@@ -1,0 +1,858 @@
+fileFormatVersion: 2
+guid: ae9647f112a7f37459177a95151435ff
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3192476503705378502
+    second: Arcade - Gradius - Small Enemies_10
+  - first:
+      213: 4952213196486612134
+    second: Arcade - Gradius - Small Enemies_11
+  - first:
+      213: 7169614899909256181
+    second: Arcade - Gradius - Small Enemies_12
+  - first:
+      213: -6401218190728812676
+    second: Arcade - Gradius - Small Enemies_13
+  - first:
+      213: -7612440733920810273
+    second: Arcade - Gradius - Small Enemies_14
+  - first:
+      213: -1941480908304170049
+    second: Arcade - Gradius - Small Enemies_15
+  - first:
+      213: 3262169615703984913
+    second: Arcade - Gradius - Small Enemies_16
+  - first:
+      213: 6475915189183357454
+    second: Arcade - Gradius - Small Enemies_17
+  - first:
+      213: 2486056998464393351
+    second: Arcade - Gradius - Small Enemies_18
+  - first:
+      213: -1668931414197829170
+    second: Arcade - Gradius - Small Enemies_19
+  - first:
+      213: -7695798968130325844
+    second: Arcade - Gradius - Small Enemies_20
+  - first:
+      213: 5192631966661769495
+    second: Arcade - Gradius - Small Enemies_21
+  - first:
+      213: 272118249002359536
+    second: Arcade - Gradius - Small Enemies_22
+  - first:
+      213: 613892245958582754
+    second: Arcade - Gradius - Small Enemies_23
+  - first:
+      213: 4207345268371508790
+    second: Arcade - Gradius - Small Enemies_24
+  - first:
+      213: 1663950042462622120
+    second: Arcade - Gradius - Small Enemies_25
+  - first:
+      213: -550680328584161631
+    second: Arcade - Gradius - Small Enemies_26
+  - first:
+      213: -7801231627392019633
+    second: Arcade - Gradius - Small Enemies_27
+  - first:
+      213: 3296337980246773083
+    second: Arcade - Gradius - Small Enemies_28
+  - first:
+      213: 507117314056853333
+    second: Arcade - Gradius - Small Enemies_29
+  - first:
+      213: 4921162992436404608
+    second: Arcade - Gradius - Small Enemies_30
+  - first:
+      213: 7756556774634478846
+    second: Arcade - Gradius - Small Enemies_31
+  - first:
+      213: -101611893674671987
+    second: Arcade - Gradius - Small Enemies_32
+  - first:
+      213: 6790591299201214329
+    second: Arcade - Gradius - Small Enemies_33
+  - first:
+      213: 7874582699945106206
+    second: Arcade - Gradius - Small Enemies_34
+  - first:
+      213: 8106967994566348263
+    second: Arcade - Gradius - Small Enemies_35
+  - first:
+      213: -7198981327340028107
+    second: Arcade - Gradius - Small Enemies_36
+  - first:
+      213: -2244315410923624183
+    second: Arcade - Gradius - Small Enemies_37
+  - first:
+      213: 185693537606969941
+    second: Arcade - Gradius - Small Enemies_38
+  - first:
+      213: 7102447398445488825
+    second: Arcade - Gradius - Small Enemies_39
+  - first:
+      213: -6321537533542423567
+    second: Arcade - Gradius - Small Enemies_40
+  - first:
+      213: -5617035941703687940
+    second: Arcade - Gradius - Small Enemies_41
+  - first:
+      213: -5099190731457516039
+    second: Arcade - Gradius - Small Enemies_42
+  - first:
+      213: -5988258503522739845
+    second: Arcade - Gradius - Small Enemies_43
+  - first:
+      213: 3815960805893897274
+    second: Arcade - Gradius - Small Enemies_44
+  - first:
+      213: -1658925576478712791
+    second: Arcade - Gradius - Small Enemies_45
+  - first:
+      213: 1008895639967664096
+    second: Arcade - Gradius - Small Enemies_46
+  - first:
+      213: 7909851820866382245
+    second: Arcade - Gradius - Small Enemies_47
+  - first:
+      213: -7675663025340190190
+    second: Arcade - Gradius - Small Enemies_48
+  - first:
+      213: -7346786702199981820
+    second: Arcade - Gradius - Small Enemies_49
+  - first:
+      213: 6771417729858379871
+    second: Arcade - Gradius - Small Enemies_50
+  - first:
+      213: 4105135000410892524
+    second: Arcade - Gradius - Small Enemies_51
+  - first:
+      213: 5140134199590678064
+    second: Arcade - Gradius - Small Enemies_52
+  - first:
+      213: -4286108511197318539
+    second: Arcade - Gradius - Small Enemies_53
+  - first:
+      213: 3120457166830667741
+    second: Arcade - Gradius - Small Enemies_54
+  - first:
+      213: 2394252069778348007
+    second: Arcade - Gradius - Small Enemies_55
+  - first:
+      213: 4505874330849151593
+    second: Arcade - Gradius - Small Enemies_56
+  - first:
+      213: -4479772148189442566
+    second: Arcade - Gradius - Small Enemies_57
+  - first:
+      213: 5373021769841114137
+    second: Arcade - Gradius - Small Enemies_58
+  - first:
+      213: -7924559668055049378
+    second: Arcade - Gradius - Small Enemies_59
+  - first:
+      213: -8289681812720969212
+    second: Arcade - Gradius - Small Enemies_60
+  - first:
+      213: 7978921489777540312
+    second: Arcade - Gradius - Small Enemies_61
+  - first:
+      213: -6085152552792990350
+    second: Arcade - Gradius - Small Enemies_62
+  - first:
+      213: -6185751898376458350
+    second: Arcade - Gradius - Small Enemies_63
+  - first:
+      213: 508236346138562728
+    second: Arcade - Gradius - Small Enemies_64
+  - first:
+      213: 5429501306033002057
+    second: Arcade - Gradius - Small Enemies_65
+  - first:
+      213: 5690282949849120248
+    second: Arcade - Gradius - Small Enemies_66
+  - first:
+      213: 1536661905266565786
+    second: Arcade - Gradius - Small Enemies_67
+  - first:
+      213: -5349569478391004082
+    second: Arcade - Gradius - Small Enemies_68
+  - first:
+      213: -7830196977519204246
+    second: Arcade - Gradius - Small Enemies_69
+  - first:
+      213: -7246117281873036857
+    second: Arcade - Gradius - Small Enemies_81
+  - first:
+      213: -6794289025474855297
+    second: Arcade - Gradius - Small Enemies_82
+  - first:
+      213: -5625007484835627357
+    second: Arcade - Gradius - Small Enemies_83
+  - first:
+      213: 1361983441271372242
+    second: Arcade - Gradius - Small Enemies_84
+  - first:
+      213: 5537871436575530997
+    second: Arcade - Gradius - Small Enemies_85
+  - first:
+      213: -3884507834980307069
+    second: Arcade - Gradius - Small Enemies_86
+  - first:
+      213: -875669231509628726
+    second: Arcade - Gradius - Small Enemies_87
+  - first:
+      213: -7791899823153274647
+    second: Arcade - Gradius - Small Enemies_88
+  - first:
+      213: 8375385707819062043
+    second: Arcade - Gradius - Small Enemies_89
+  - first:
+      213: 4487112422775490584
+    second: Arcade - Gradius - Small Enemies_90
+  - first:
+      213: -4703293747520714721
+    second: Arcade - Gradius - Small Enemies_91
+  - first:
+      213: -3718080055850951545
+    second: Arcade - Gradius - Small Enemies_92
+  - first:
+      213: 3056106687715168928
+    second: Arcade - Gradius - Small Enemies_93
+  - first:
+      213: -4459449769107777679
+    second: Arcade - Gradius - Small Enemies_94
+  - first:
+      213: -6389507579936154748
+    second: Arcade - Gradius - Small Enemies_95
+  - first:
+      213: 8038231747744390888
+    second: Arcade - Gradius - Small Enemies_96
+  - first:
+      213: -8941014693944951174
+    second: Arcade - Gradius - Small Enemies_97
+  - first:
+      213: -927427039098855522
+    second: Arcade - Gradius - Small Enemies_98
+  - first:
+      213: -3941367594622464254
+    second: Arcade - Gradius - Small Enemies_99
+  - first:
+      213: -8352160383739380404
+    second: Arcade - Gradius - Small Enemies_100
+  - first:
+      213: -7603336403465620799
+    second: Arcade - Gradius - Small Enemies_101
+  - first:
+      213: -2623021035070986159
+    second: Arcade - Gradius - Small Enemies_102
+  - first:
+      213: -449255757497128309
+    second: Arcade - Gradius - Small Enemies_103
+  - first:
+      213: 2401624753051085654
+    second: Arcade - Gradius - Small Enemies_104
+  - first:
+      213: -5906754685836492636
+    second: Arcade - Gradius - Small Enemies_105
+  - first:
+      213: -6169347790551319263
+    second: Arcade - Gradius - Small Enemies_106
+  - first:
+      213: 505921760805731204
+    second: Arcade - Gradius - Small Enemies_107
+  - first:
+      213: -5205299767847419419
+    second: Arcade - Gradius - Small Enemies_108
+  - first:
+      213: -3864517898473348306
+    second: Arcade - Gradius - Small Enemies_109
+  - first:
+      213: -7018699127216624525
+    second: Arcade - Gradius - Small Enemies_110
+  - first:
+      213: -5431114352332070997
+    second: Arcade - Gradius - Small Enemies_111
+  - first:
+      213: 3928879877999151256
+    second: Arcade - Gradius - Small Enemies_112
+  - first:
+      213: -8795052415520930128
+    second: Arcade - Gradius - Small Enemies_113
+  - first:
+      213: 8438644933761167607
+    second: Arcade - Gradius - Small Enemies_114
+  - first:
+      213: -1213224758253027900
+    second: Arcade - Gradius - Small Enemies_115
+  - first:
+      213: -8621238538999714403
+    second: Arcade - Gradius - Small Enemies_116
+  - first:
+      213: 6091987937226637105
+    second: Arcade - Gradius - Small Enemies_117
+  - first:
+      213: -2820609342230438396
+    second: Arcade - Gradius - Small Enemies_118
+  - first:
+      213: 4928086930559915531
+    second: Arcade - Gradius - Small Enemies_119
+  - first:
+      213: 3036239956443410024
+    second: Arcade - Gradius - Small Enemies_120
+  - first:
+      213: -5424161608507518204
+    second: Arcade - Gradius - Small Enemies_121
+  - first:
+      213: -6000000148618199685
+    second: Arcade - Gradius - Small Enemies_122
+  - first:
+      213: 1808921225210671422
+    second: Arcade - Gradius - Small Enemies_123
+  - first:
+      213: -3712292346789132433
+    second: Arcade - Gradius - Small Enemies_124
+  - first:
+      213: -2567376476730377080
+    second: Arcade - Gradius - Small Enemies_125
+  - first:
+      213: -3517295177635823731
+    second: Arcade - Gradius - Small Enemies_126
+  - first:
+      213: -3397279401233138992
+    second: Arcade - Gradius - Small Enemies_127
+  - first:
+      213: 5921288810657864582
+    second: Arcade - Gradius - Small Enemies_128
+  - first:
+      213: 7961694688469361189
+    second: Arcade - Gradius - Small Enemies_129
+  - first:
+      213: 3173745585657913720
+    second: Arcade - Gradius - Small Enemies_130
+  - first:
+      213: -3710684233151532950
+    second: Arcade - Gradius - Small Enemies_131
+  - first:
+      213: 5454942379340204025
+    second: Arcade - Gradius - Small Enemies_132
+  - first:
+      213: 2072637055602759135
+    second: Arcade - Gradius - Small Enemies_133
+  - first:
+      213: 7788956124826849251
+    second: Arcade - Gradius - Small Enemies_134
+  - first:
+      213: 8186920480065675933
+    second: Arcade - Gradius - Small Enemies_135
+  - first:
+      213: -7968939875235716758
+    second: Arcade - Gradius - Small Enemies_136
+  - first:
+      213: 3646392940312665072
+    second: Arcade - Gradius - Small Enemies_137
+  - first:
+      213: -8825322627739342173
+    second: Arcade - Gradius - Small Enemies_138
+  - first:
+      213: -1062723545051822122
+    second: Arcade - Gradius - Small Enemies_139
+  - first:
+      213: -3596387738396313087
+    second: Arcade - Gradius - Small Enemies_0
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 14
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_42
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 121
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fda281eb090c39b0800000000000000
+      internalID: -5099190731457516039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_43
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 121
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7990524e9e65eca0800000000000000
+      internalID: -5988258503522739845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_44
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 121
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c7e18922405f430800000000000000
+      internalID: 3815960805893897274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_45
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 121
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c1d214aff4af8e0800000000000000
+      internalID: -1658925576478712791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_46
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 124
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e786bb3d31500e00800000000000000
+      internalID: 1008895639967664096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_81
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 69
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9732549be907b90800000000000000
+      internalID: -7246117281873036857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_82
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 69
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7e7c370126d5b1a0800000000000000
+      internalID: -6794289025474855297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_83
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 69
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ae757fbe75ffe1b0800000000000000
+      internalID: -5625007484835627357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_84
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 69
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d9b1f649bcb6e210800000000000000
+      internalID: 1361983441271372242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_85
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 69
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ffdddc0bb87adc40800000000000000
+      internalID: 5537871436575530997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_86
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 69
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38fe6c084b4771ac0800000000000000
+      internalID: -3884507834980307069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_87
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 69
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac81123397ff8d3f0800000000000000
+      internalID: -875669231509628726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_88
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 69
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e02583e46c9dd390800000000000000
+      internalID: -7791899823153274647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_89
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 69
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1350733de85b3470800000000000000
+      internalID: 8375385707819062043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_90
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 69
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81886ca89fc654e30800000000000000
+      internalID: 4487112422775490584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_91
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 69
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1846b8714b8abeb0800000000000000
+      internalID: -4703293747520714721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_92
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 69
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78c1a8073e9b66cc0800000000000000
+      internalID: -3718080055850951545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Gradius - Small Enemies_93
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 69
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a255fc27d8796a20800000000000000
+      internalID: 3056106687715168928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
