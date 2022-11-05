@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         if(collision.CompareTag("EBullet") || collision.CompareTag("Enemy"))
         {
             OnDamageBlink();
-            GameManager.Instance.HealthDown();
+            SinglePlayManager.Instance.HealthDown();
         }
         if (collision.CompareTag("PowerItem"))
         {
@@ -270,7 +270,7 @@ public class Player : MonoBehaviour
             shellCount = 0;
         }
 
-        GameManager.Instance.pshellCount = shellCount;
+        SinglePlayManager.Instance.pshellCount = shellCount;
     }
     private void OnDamageBlink()
     {

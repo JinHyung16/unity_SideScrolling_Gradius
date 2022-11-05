@@ -2,37 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChaser : MonoBehaviour, IDamage
+public class EnemyBoomber : MonoBehaviour, IDamage
 {
+    SpriteRenderer sprite;
     AudioSource audio;
 
     public AudioClip hitSound;
+    public ParticleSystem particle;
+    public GameObject boomEffect;
 
-    public GameObject explosionEff;
-    public Transform playerTrans;
+    [SerializeField] private int hp = 50;
+    [SerializeField] private float moveSpeed = 4.0f;
 
-    [SerializeField] private int hp = 60;
-    [SerializeField] private float moveSpeed = 3.0f;
-    [SerializeField] private float rotateSpeed = 3.0f;
     public int HP { get; set; }
 
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+        sprite = GetComponent<SpriteRenderer>();
         HP = hp;
+
+        StartCoroutine(ReadyBoom());
     }
 
     private void Update()
     {
-        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         Movement();
     }
 
+    IEnumerator ReadyBoom()
+    {
+        while(true)
+        {
+            sprite.color = new Color(1, 1, 1, 0.5f);
+            yield return Cashing.YieldInstruction.WaitForSeconds(0.5f);
+            sprite.color = new Color(1, 1, 1, 1);
+            yield return Cashing.YieldInstruction.WaitForSeconds(0.5f);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("PBullet"))
+        if(collision.CompareTag("Player"))
         {
-            switch(collision.gameObject.name)
+            Dead();
+        }
+
+        if (collision.CompareTag("PBullet"))
+        {
+            switch (collision.gameObject.name)
             {
                 case "PBulletOne":
                     Damaged(10);
@@ -47,13 +64,20 @@ public class EnemyChaser : MonoBehaviour, IDamage
 
             PlaySound("hit");
         }
-    }
 
+        if (collision.CompareTag("Border"))
+        {
+            if (collision.gameObject.name == "Left")
+            {
+                Dead();
+            }
+        }
+    }
     private void OnEnable()
     {
         if (PoolManager.Instance != null)
         {
-            hp = 40;
+            hp = 50;
             HP = hp;
         }
     }
@@ -68,32 +92,24 @@ public class EnemyChaser : MonoBehaviour, IDamage
         }
         audio.Play();
     }
+
     private void Movement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, playerTrans.position, moveSpeed * Time.deltaTime);
-
-        if (playerTrans != null)
-        {
-            Vector2 direction = new Vector2(transform.position.x - playerTrans.position.x, transform.position.y - playerTrans.position.y);
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion angleAxis = Quaternion.AngleAxis(angle, Vector3.forward);
-            Quaternion rotation = Quaternion.Slerp(transform.rotation, angleAxis, rotateSpeed * Time.deltaTime);
-            transform.rotation = rotation;
-        }
+        Vector2 curPos = transform.position;
+        transform.position = curPos + Vector2.left * moveSpeed * Time.deltaTime;
+        particle.Play();
     }
 
     private void Dead()
     {
-        GameManager.Instance.score += 10;
+        SinglePlayManager.Instance.score += 5;
 
-        GameObject effect = Instantiate(explosionEff, transform.position, transform.rotation);
+        GameObject effect = Instantiate(boomEffect, transform.position, transform.rotation);
         Destroy(effect, 0.2f);
 
-        EnemySpawn.Instance.cCount--;
+        EnemySpawn.Instance.bCount--;
         StateActiveSet();
     }
-
     private void StateActiveSet()
     {
         audio.Stop();
@@ -109,5 +125,4 @@ public class EnemyChaser : MonoBehaviour, IDamage
             Dead();
         }
     }
-
 }

@@ -225,8 +225,8 @@ public class EnemyBoss : MonoBehaviour, IDamage
 
     private void Dead()
     {
-        GameManager.Instance.score += 500;
-        GameManager.Instance.isOver = false;
+        SinglePlayManager.Instance.score += 500;
+        SinglePlayManager.Instance.isOver = false;
 
         anim.SetBool("isDead", true);
         explosionParticle.Play();
@@ -240,7 +240,7 @@ public class EnemyBoss : MonoBehaviour, IDamage
     private void StateSetActive()
     {
         this.gameObject.SetActive(false);
-        GameManager.Instance.GameClear();
+        SinglePlayManager.Instance.GameClear();
     }
 
     public void Damaged(int damage)

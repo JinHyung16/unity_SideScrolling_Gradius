@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-sealed class GameManager : MonoBehaviour
+sealed class SinglePlayManager : MonoBehaviour
 {
     #region SingleTon
-    private static GameManager instance;
+    private static SinglePlayManager instance;
 
-    public static GameManager Instance
+    public static SinglePlayManager Instance
     {
         get
         {

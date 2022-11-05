@@ -75,15 +75,15 @@ public class EnemySpawn : MonoBehaviour
     {
         if(PoolManager.Instance != null)
         {
-            if (GameManager.Instance.bossSpawn)
+            if (SinglePlayManager.Instance.bossSpawn)
             {
                 BossSpawn();
-                GameManager.Instance.bossSpawn = false;
+                SinglePlayManager.Instance.bossSpawn = false;
             }
 
-            if (GameManager.Instance.isBossStage)
+            if (SinglePlayManager.Instance.isBossStage)
             {
-                GameManager.Instance.curTime = 0.0f;
+                SinglePlayManager.Instance.curTime = 0.0f;
             }
 
             CountCheck();
@@ -164,7 +164,7 @@ public class EnemySpawn : MonoBehaviour
     }
     private void ChaserSpawn()
     {
-        if (!GameManager.Instance.isBossStage)
+        if (!SinglePlayManager.Instance.isBossStage)
         {
             chaserYAxis = Random.Range(-7, 7);
             GameObject ec = PoolManager.Instance.MakeEnemy("chaser");
@@ -193,7 +193,7 @@ public class EnemySpawn : MonoBehaviour
     }
     private void UfoSpawn()
     {
-        if (!GameManager.Instance.isBossStage)
+        if (!SinglePlayManager.Instance.isBossStage)
         {
             ufoYAxis = Random.Range(-4, 4);
             GameObject eu = PoolManager.Instance.MakeEnemy("ufo");
@@ -210,7 +210,7 @@ public class EnemySpawn : MonoBehaviour
 
     private void GroundSpawn()
     {
-        if (GameManager.Instance.isGroundStage && !GameManager.Instance.isBossStage)
+        if (SinglePlayManager.Instance.isGroundStage && !SinglePlayManager.Instance.isBossStage)
         {
             groudXAxis = Random.Range(-8, 5);
             GameObject eg = PoolManager.Instance.MakeEnemy("ground");
