@@ -4,6 +4,7 @@ using UnityEngine;
 
 sealed class PoolManager : MonoBehaviour
 {
+    #region SingleTon
     private static PoolManager instance;
 
     public static PoolManager Instance
@@ -34,7 +35,7 @@ sealed class PoolManager : MonoBehaviour
         }
 
     }
-
+    #endregion
     // item
     public GameObject powerItem;
     public GameObject shellItem;
