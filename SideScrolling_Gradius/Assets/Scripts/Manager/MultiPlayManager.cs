@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 
 public class MultiPlayManager : MonoBehaviour
 {
 
     public Button exitBt;
 
-    private async void Start()
+    private void Start()
     {
         exitBt.onClick.AddListener(ExitMultiPlay);
     }
 
-    private void ExitMultiPlay()
+    private async void ExitMultiPlay()
     {
+        await GameManager.GetInstace.QuickMatch();
         SceneController.GetInstace.LoadScene("Main");
     }
 }

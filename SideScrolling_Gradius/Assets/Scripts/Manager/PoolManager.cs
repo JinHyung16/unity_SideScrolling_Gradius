@@ -26,6 +26,7 @@ sealed class PoolManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
 
+            BindingObject();
             Setting();
             Pooling();
         }
@@ -77,6 +78,65 @@ sealed class PoolManager : MonoBehaviour
     private GameObject[] enemys;
     private GameObject[] bullets;
 
+    private void BindingObject()
+    {
+        if (powerItem == null)
+        {
+            powerItem = Resources.Load("PowerItem") as GameObject;
+        }
+        if (shellItem == null)
+        {
+            shellItem = Resources.Load("ShellItem") as GameObject;
+        }
+        if (eChaser == null)
+        {
+            eChaser = Resources.Load("EnemyChaser") as GameObject;
+        }
+        if (eBoomber == null)
+        {
+            eBoomber = Resources.Load("EnemyBoomber") as GameObject;
+        }
+        if (eUFO == null)
+        {
+            eUFO = Resources.Load("EnemyUFO") as GameObject;
+        }
+        if (eGround == null)
+        {
+            eGround = Resources.Load("EnemyGround") as GameObject;
+        }
+        if (eBoss == null)
+        {
+            eBoss = Resources.Load("EnemyBoss") as GameObject;
+        }
+        if (pBullet == null)
+        {
+            pBullet = Resources.Load("PBulletOne") as GameObject;
+        }
+        if (pBulletSp == null)
+        {
+            pBulletSp = Resources.Load("PBulletSpecial") as GameObject;
+        }
+        if (pShell == null)
+        {
+            pShell = Resources.Load("PBulletShell") as GameObject;
+        }
+        if (egBullet == null)
+        {
+            egBullet = Resources.Load("EBulletGround") as GameObject;
+        }
+        if (euBullet == null)
+        {
+            euBullet = Resources.Load("EBulletUFO") as GameObject;
+        }
+        if (ebBullet == null)
+        {
+            ebBullet = Resources.Load("EBulletBoss") as GameObject;
+        }
+        if (ebShell == null)
+        {
+            ebShell = Resources.Load("EBossShell") as GameObject;
+        }
+    }
     private void Setting()
     {
         powers = new GameObject[5];

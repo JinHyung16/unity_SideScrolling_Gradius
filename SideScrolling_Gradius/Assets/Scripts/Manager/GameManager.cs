@@ -48,10 +48,14 @@ public class GameManager : MonoBehaviour
     private string ticket;
 
     private GameObject localPlayer;
-    private IDictionary<string, GameObject> players;
+    private IDictionary<string, GameObject> playerDictionary;
 
+    //로컬 플레이어, 리모트 플레이어 캐싱
     public GameObject NetworkLocalPlayerPrefab;
     public GameObject NetworkRemotePlayerPrefab;
+
+    //플레이어 스폰 위치 받기
+    public GameObject spawnPoint;
 
     private async void Start()
     {
@@ -76,19 +80,74 @@ public class GameManager : MonoBehaviour
         SceneController.GetInstace.LoadScene("SinglePlay");
     }
 
-    private void MultiPlayMode()
+    private async void MultiPlayMode()
     {
         SceneController.GetInstace.LoadScene("MultiPlay");
+
+        await MatchStart();
     }
 
     private async Task MatchStart(int min = 2)
     {
         var matchMakingTicket = await HughServer.GetInstace.Socket.AddMatchmakerAsync("*", min, 3);
         ticket = matchMakingTicket.Ticket;
+#if UNITY_EDITOR
+        Debug.LogFormat("<color=green><b>[Find Match]</b> Ticket : {0} </color>", ticket);
+#endif
     }
 
     private void SpawnPlayer(string matchId, IUserPresence user, int spawnIndex = -1)
     {
+        if (playerDictionary.ContainsKey(user.SessionId))
+        {
+            return;
+        }
+
+        var isLocalPlayer = user.SessionId == localUser.SessionId;
+        var playerPrefab = isLocalPlayer ? NetworkLocalPlayerPrefab : NetworkRemotePlayerPrefab;
+
+        var player = Instantiate(playerPrefab, transform.position, Quaternion.identity);
+
+        if (!isLocalPlayer)
+        {
+            player.GetComponent<PlayerNetworkRemoteSync>().netWorkData = new RemotePlayerNetworkData
+            {
+                MatchId = matchId,
+                User = user
+            };
+        }
+
+        playerDictionary.Add(user.SessionId, player);
+
+        if (isLocalPlayer) { localPlayer = player; }
+    }
+    public async Task QuickMatch()
+    {
+        await HughServer.GetInstace.Socket.LeaveMatchAsync(currentMatch);
+
+        currentMatch = null;
+        localUser = null;
+
+        foreach (var player in playerDictionary.Values)
+        {
+            Destroy(player);
+        }
+
+        playerDictionary.Clear();
+
+#if UNITY_EDITOR
+        Debug.Log("<color=green><br> Quick Match </br></color>");
+#endif
+    }
+
+    public async Task SendMatchStateAsync(long opCode, string state)
+    {
+        await HughServer.GetInstace.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
+    }
+
+    public void SendMatchState(long opCode, string state)
+    {
+        HughServer.GetInstace.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
     }
 
     private async void OnRecivedMatchMakerMatched(IMatchmakerMatched matchmakerMatched)
@@ -122,10 +181,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Leave User Session Id : " + user.SessionId);
 
-            if (players.ContainsKey(user.SessionId))
+            if (playerDictionary.ContainsKey(user.SessionId))
             {
-                Destroy(players[user.SessionId]);
-                players.Remove(user.SessionId);
+                Destroy(playerDictionary[user.SessionId]);
+                playerDictionary.Remove(user.SessionId);
             }
         }
     }
@@ -143,10 +202,10 @@ public class GameManager : MonoBehaviour
         switch (matchState.OpCode)
         {
             case OpCodes.Died:
-                var playerToDestroy = players[userSessionId];
+                var playerToDestroy = playerDictionary[userSessionId];
                 Destroy(playerToDestroy, 0.5f);
-                players.Remove(userSessionId);
-                if (players.Count == 0)
+                playerDictionary.Remove(userSessionId);
+                if (playerDictionary.Count == 0)
                 {
                     //GameOver();
                 }
