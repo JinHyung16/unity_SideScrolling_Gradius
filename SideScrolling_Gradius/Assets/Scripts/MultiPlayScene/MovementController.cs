@@ -89,10 +89,10 @@ public class MovementController : MonoBehaviour
     {
         return checkBorderPos;
     }
-
-    public void DeathAnimation()
+    public void Death(GameObject remote)
     {
-
+        remote.SetActive(false);
     }
+
     #endregion
 }

@@ -28,4 +28,16 @@ public class SceneController : LazySingleton<SceneController>
             }
         }
     }
+
+    public bool IsSinglePlayScene()
+    {
+        if (SceneManager.GetActiveScene().name == "SinglePlay")
+        {
+            return true;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }

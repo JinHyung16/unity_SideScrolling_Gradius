@@ -193,6 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2497274878570780068}
   - component: {fileID: 763933122635110193}
+  - component: {fileID: 4327045849142125048}
   m_Layer: 6
   m_Name: LocalPlayerAsync
   m_TagString: Untagged
@@ -232,6 +233,19 @@ MonoBehaviour:
   fireInput: 0
   inputChange: 0
   fireKeyCode: 0
+--- !u!114 &4327045849142125048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2497274878570780123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea593b6a6c33f14fb310b41844eb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateSyncTimer: 0.1
 --- !u!1 &3789471867559586184
 GameObject:
   m_ObjectHideFlags: 0

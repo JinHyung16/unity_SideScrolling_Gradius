@@ -52,6 +52,13 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
         playerTransform.position = Vector2.Lerp(lerpFromPosition, lerpToPosition, lerpTimer / LerpTime);
     }
 
+    private void OnDestroy()
+    {
+        if (GameManager.GetInstance != null)
+        {
+            HughServer.GetInstace.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
+        }
+    }
 
     private void EnqueueOnReceivedMatchState(IMatchState matchState)
     {
@@ -77,7 +84,7 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
                 SetInputFromState(matchState.State);
                 break;
             case OpCodes.Died:
-                movementController.DeathAnimation();
+                movementController.Death(this.gameObject);
                 break;
             default:
                 break;

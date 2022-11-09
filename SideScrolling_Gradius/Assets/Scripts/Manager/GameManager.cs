@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     #region SingleTon
     private static GameManager instance;
-    public static GameManager GetInstace
+    public static GameManager GetInstance
     {
         get
         {
@@ -103,10 +103,20 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        var spawns = this.gameObject.transform;
+        if (spawnIndex == -1)
+        {
+            spawns = spawnPoint.transform.GetChild(Random.Range(0, spawnPoint.transform.childCount));
+        }
+        else
+        {
+            spawns = spawnPoint.transform.GetChild(spawnIndex);
+        }
+
         var isLocalPlayer = user.SessionId == localUser.SessionId;
         var playerPrefab = isLocalPlayer ? NetworkLocalPlayerPrefab : NetworkRemotePlayerPrefab;
 
-        var player = Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        var player = Instantiate(playerPrefab, spawns.position, Quaternion.identity);
 
         if (!isLocalPlayer)
         {
@@ -120,6 +130,14 @@ public class GameManager : MonoBehaviour
         playerDictionary.Add(user.SessionId, player);
 
         if (isLocalPlayer) { localPlayer = player; }
+    }
+
+    public async void LocalPlayerDied(GameObject player)
+    {
+        await SendMatchStateAsync(OpCodes.Died, MatchDataJson.Died(player.transform.position));
+
+        playerDictionary.Remove(localUser.SessionId);
+        Destroy(player, 0.5f);
     }
     public async Task QuickMatch()
     {

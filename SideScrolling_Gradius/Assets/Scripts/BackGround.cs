@@ -10,8 +10,25 @@ public class BackGround : MonoBehaviour
 
     private void Start()
     {
+        if (backGroundSpace == null)
+        {
+            backGroundSpace = Resources.Load("BackGround Space") as GameObject;
+        }
+        if (backGroundGround == null)
+        {
+            backGroundGround = Resources.Load("BackGround Ground") as GameObject;
+        }
+
         backGroundSpace.SetActive(true);
-        backGroundGround.SetActive(true);
+
+        if (SceneController.GetInstace.IsSinglePlayScene())
+        {
+            backGroundGround.SetActive(true);
+        }
+        else
+        {
+            backGroundGround.SetActive(false);
+        }
 
         this.transform.position = new Vector2(0, 0);
 
