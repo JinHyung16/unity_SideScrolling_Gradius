@@ -122,7 +122,7 @@ public class EnemyUFO : MonoBehaviour, IDamage
     }
     private void Dead()
     {
-        SinglePlayManager.GetInstance.score += 50;
+        UIManager.GetInstance.score += 50;
 
         sprite.color = new Color(1, 1, 1, 1f);
 

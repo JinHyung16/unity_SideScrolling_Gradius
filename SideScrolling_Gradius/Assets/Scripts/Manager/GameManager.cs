@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
         PlayModePanel.SetActive(false);
         
         SceneController.GetInstace.LoadScene("SinglePlay");
+        UIManager.GetInstance.CanvasActive("gamestart", true);
         EnemySpawn.GetInstance.EnemyCoroutineController(true);
     }
 
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
         await MatchStart();
 
         SceneController.GetInstace.LoadScene("MultiPlay");
+        UIManager.GetInstance.CanvasActive("gamestart", true);
         EnemySpawn.GetInstance.EnemyCoroutineController(true);
     }
 

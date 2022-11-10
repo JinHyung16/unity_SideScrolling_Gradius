@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(-11, 0);
         startPoint = transform.position;
 
-        delayTime = 1.5f;
+        delayTime = 1.2f;
         specialDelay = 4.0f;
 
         playerPower = 1;
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         if(collision.CompareTag("EBullet") || collision.CompareTag("Enemy"))
         {
             OnDamageBlink();
-            SinglePlayManager.GetInstance.HealthDown();
+            UIManager.GetInstance.HealthDown();
         }
         if (collision.CompareTag("PowerItem"))
         {
@@ -168,12 +168,12 @@ public class Player : MonoBehaviour
     }
     private void ReloadTime()
     {
-        curTime += (startTime - Time.deltaTime);
+        curTime += (Time.deltaTime - startTime);
     }
 
     private void SpecialReloadTime()
     {
-        specialTime += (startTime - Time.deltaTime);
+        specialTime += (Time.deltaTime - startTime);
     }
     private void Fire()
     {
@@ -273,7 +273,7 @@ public class Player : MonoBehaviour
             shellCount = 0;
         }
 
-        SinglePlayManager.GetInstance.pshellCount = shellCount;
+        UIManager.GetInstance.pshellCount = shellCount;
     }
     private void OnDamageBlink()
     {

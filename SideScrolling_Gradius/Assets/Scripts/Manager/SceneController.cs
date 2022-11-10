@@ -37,7 +37,7 @@ public class SceneController : LazySingleton<SceneController>
         }
         else
         {
-            return true;
+            return false;
         }
     }
 }
