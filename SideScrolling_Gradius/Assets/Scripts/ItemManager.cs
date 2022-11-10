@@ -12,13 +12,19 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        pItemSpawnTime = Random.Range(10, 20);
-        lItemSpawnTime = Random.Range(10, 30);
+        if (PoolManager.GetInstance != null)
+        {
+            pItemSpawnTime = Random.Range(10, 20);
+            lItemSpawnTime = Random.Range(10, 30);
 
-        yAxis = Random.Range(-6, 6);
+            yAxis = Random.Range(-6, 6);
 
-        StartCoroutine(PowerItem());
-        StartCoroutine(ShellItem());
+            if (SceneController.GetInstace.IsSinglePlayScene())
+            {
+                StartCoroutine(PowerItem());
+                StartCoroutine(ShellItem());
+            }
+        }
     }
 
     IEnumerator PowerItem()
@@ -27,7 +33,7 @@ public class ItemManager : MonoBehaviour
         {
             pItemSpawnTime = Random.Range(10, 30);
             yAxis = Random.Range(-6, 6);
-            GameObject item = PoolManager.Instance.MakeItem("power");
+            GameObject item = PoolManager.GetInstance.MakeItem("power");
             item.transform.position = new Vector2(transform.position.x, yAxis);
             item.SetActive(true);
             item.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveSpeed, ForceMode2D.Impulse);
@@ -41,7 +47,7 @@ public class ItemManager : MonoBehaviour
         {
             lItemSpawnTime = Random.Range(20, 80);
             yAxis = Random.Range(-6, 6);
-            GameObject item = PoolManager.Instance.MakeItem("shell");
+            GameObject item = PoolManager.GetInstance.MakeItem("shell");
             item.transform.position = new Vector2(transform.position.x, yAxis);
             item.SetActive(true);
             item.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveSpeed, ForceMode2D.Impulse);

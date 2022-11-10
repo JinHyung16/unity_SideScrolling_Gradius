@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 sealed class SinglePlayManager : MonoBehaviour
 {
     #region SingleTon
     private static SinglePlayManager instance;
 
-    public static SinglePlayManager Instance
+    public static SinglePlayManager GetInstance
     {
         get
         {
@@ -36,17 +35,14 @@ sealed class SinglePlayManager : MonoBehaviour
     }
     #endregion
 
-    AudioSource audio;
+    private AudioSource audio;
 
     [Tooltip("Can Change the value used by range")]
-    
     [Range(0, 120)][SerializeField] private float bossTime = 120.0f;
+
     public float curTime = 0.0f;
     private float startTime = 0.0f;
 
-    public bool isGroundStage = false;
-    public bool isBossStage = false;
-    public bool bossSpawn = false;
     public bool isOver = false;
 
     public int score = 0;
@@ -64,7 +60,7 @@ sealed class SinglePlayManager : MonoBehaviour
     public Image[] hpImgs;
 
     public Button startBt;
-    public Button restartBt;
+    public Button exitBt;
 
     public AudioClip startSound;
     public AudioClip overSound;
@@ -76,28 +72,28 @@ sealed class SinglePlayManager : MonoBehaviour
         bossTime = Random.Range(60, 121);
         startTime = Time.time;
 
-        isGroundStage = false;
-        isBossStage = false;
-
         initPanel.SetActive(true);
         resultPanel.SetActive(false);
 
         scoreText.text = "SCORE " + score.ToString();
         startBt.onClick.AddListener(GameStart);
-        restartBt.onClick.AddListener(Restart);
+        exitBt.onClick.AddListener(ExitGame);
 
         PlaySound("Start");
 
+        // pause the singlePlayScene
         Time.timeScale = 0;
     }
+
     private void Update()
     {
         curTime += (Time.deltaTime - startTime);
         if (curTime > bossTime)
         {
-            isGroundStage = false;
-            isBossStage = true;
-            bossSpawn = true;
+            GameManager.GetInstance.isGroundStage = false;
+            GameManager.GetInstance.isBossStage = true;
+
+            EnemySpawn.GetInstance.BossSpawnController();
         }
 
         ScoreUpdate();
@@ -112,13 +108,6 @@ sealed class SinglePlayManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Ground"))
-        {
-            isGroundStage = true;
-        }
-    }
     private void GameStart()
     {
         initPanel.SetActive(false);
@@ -127,16 +116,14 @@ sealed class SinglePlayManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void Restart()
+    private void ExitGame()
     {
-        SceneManager.LoadScene(0);
-
         initPanel.SetActive(false);
         resultPanel.SetActive(false);
 
         score = 0;
-        isGroundStage = false;
-        isBossStage = false;
+        GameManager.GetInstance.isGroundStage = false;
+        GameManager.GetInstance.isBossStage = false;
         isOver = false;
         hp = 3;
 
@@ -145,27 +132,29 @@ sealed class SinglePlayManager : MonoBehaviour
             hpImgs[i].color = new Color(1, 1, 1, 1);
         }
 
-        Time.timeScale = 1;
+        Time.timeScale = 0;
+
+        SceneController.GetInstace.LoadScene("Main");
     }
 
     private void GameOver()
     {
         isOver = true;
-        isBossStage = false;
-        isGroundStage = false;
+        GameManager.GetInstance.isBossStage = false;
+
         resultPanel.SetActive(true);
         resultScoreText.text = "Score " + score.ToString();
 
         PlaySound("Over");
-
         Time.timeScale = 0;
     }
 
     public void GameClear()
     {
         isOver = false;
-        isBossStage = false;
-        isGroundStage = false;
+        GameManager.GetInstance.isBossStage = false;
+        GameManager.GetInstance.isGroundStage = false;
+
         resultPanel.SetActive(true);
         resultScoreText.text = "Score " + score.ToString();
         PlaySound("Over");

@@ -75,7 +75,7 @@ public class EnemyBoomber : MonoBehaviour, IDamage
     }
     private void OnEnable()
     {
-        if (PoolManager.Instance != null)
+        if (PoolManager.GetInstance != null)
         {
             hp = 50;
             HP = hp;
@@ -102,12 +102,12 @@ public class EnemyBoomber : MonoBehaviour, IDamage
 
     private void Dead()
     {
-        SinglePlayManager.Instance.score += 5;
+        SinglePlayManager.GetInstance.score += 5;
 
         GameObject effect = Instantiate(boomEffect, transform.position, transform.rotation);
         Destroy(effect, 0.2f);
 
-        EnemySpawn.Instance.bCount--;
+        EnemySpawn.GetInstance.bCount--;
         StateActiveSet();
     }
     private void StateActiveSet()

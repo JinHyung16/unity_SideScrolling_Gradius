@@ -157,17 +157,17 @@ public class EnemyBoss : MonoBehaviour, IDamage
 
     private void Fire()
     {
-        GameObject bb1 = PoolManager.Instance.MakeBullet("ebbullet");
+        GameObject bb1 = PoolManager.GetInstance.MakeBullet("ebbullet");
         bb1.transform.position = firePointTwo.position;
         bb1.SetActive(true);
         bb1.GetComponent<Rigidbody2D>().AddForce(Vector2.left * firePower, ForceMode2D.Impulse);
 
-        GameObject bb2 = PoolManager.Instance.MakeBullet("ebbullet");
+        GameObject bb2 = PoolManager.GetInstance.MakeBullet("ebbullet");
         bb2.transform.position = firePointThree.position;
         bb2.SetActive(true);
         bb2.GetComponent<Rigidbody2D>().AddForce(Vector2.left * firePower, ForceMode2D.Impulse);
 
-        GameObject bb3 = PoolManager.Instance.MakeBullet("ebbullet");
+        GameObject bb3 = PoolManager.GetInstance.MakeBullet("ebbullet");
         bb3.transform.position = firePointFour.position;
         bb3.SetActive(true);
         bb3.GetComponent<Rigidbody2D>().AddForce(Vector2.left * firePower, ForceMode2D.Impulse);
@@ -177,23 +177,23 @@ public class EnemyBoss : MonoBehaviour, IDamage
     {
         Fire();
 
-        GameObject bs1 = PoolManager.Instance.MakeBullet("ebshell");
+        GameObject bs1 = PoolManager.GetInstance.MakeBullet("ebshell");
         bs1.transform.position = firePointOne.position;
         bs1.SetActive(true);
 
-        GameObject bs2 = PoolManager.Instance.MakeBullet("ebshell");
+        GameObject bs2 = PoolManager.GetInstance.MakeBullet("ebshell");
         bs2.transform.position = firePointTwo.position;
         bs2.SetActive(true);
 
-        GameObject bs3 = PoolManager.Instance.MakeBullet("ebshell");
+        GameObject bs3 = PoolManager.GetInstance.MakeBullet("ebshell");
         bs3.transform.position = firePointThree.position;
         bs3.SetActive(true);
 
-        GameObject bs4 = PoolManager.Instance.MakeBullet("ebshell");
+        GameObject bs4 = PoolManager.GetInstance.MakeBullet("ebshell");
         bs4.transform.position = firePointFour.position;
         bs4.SetActive(true);
 
-        GameObject bs5 = PoolManager.Instance.MakeBullet("ebshell");
+        GameObject bs5 = PoolManager.GetInstance.MakeBullet("ebshell");
         bs5.transform.position = firePointFive.position;
         bs5.SetActive(true);
     }
@@ -214,7 +214,7 @@ public class EnemyBoss : MonoBehaviour, IDamage
             Vector2 bulletMoveDirection = (fireDirVector - startPoint).normalized * firePower;
 
             // Create game objects.
-            GameObject ub = PoolManager.Instance.MakeBullet("ebbullet");
+            GameObject ub = PoolManager.GetInstance.MakeBullet("ebbullet");
             ub.transform.position = new Vector2(startPoint.x, startPoint.y);
             ub.SetActive(true);
             ub.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletMoveDirection.x, bulletMoveDirection.y);
@@ -225,8 +225,8 @@ public class EnemyBoss : MonoBehaviour, IDamage
 
     private void Dead()
     {
-        SinglePlayManager.Instance.score += 500;
-        SinglePlayManager.Instance.isOver = false;
+        SinglePlayManager.GetInstance.score += 500;
+        SinglePlayManager.GetInstance.isOver = false;
 
         anim.SetBool("isDead", true);
         explosionParticle.Play();
@@ -240,7 +240,7 @@ public class EnemyBoss : MonoBehaviour, IDamage
     private void StateSetActive()
     {
         this.gameObject.SetActive(false);
-        SinglePlayManager.Instance.GameClear();
+        SinglePlayManager.GetInstance.GameClear();
     }
 
     public void Damaged(int damage)

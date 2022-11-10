@@ -68,7 +68,7 @@ public class EnemyUFO : MonoBehaviour, IDamage
     }
     private void OnEnable()
     {
-        if (PoolManager.Instance != null)
+        if (PoolManager.GetInstance != null)
         {
             hp = 200;
             HP = hp;
@@ -94,7 +94,7 @@ public class EnemyUFO : MonoBehaviour, IDamage
                 Vector2 bulletMoveDirection = (fireDirVector - startPoint).normalized * firePower;
 
                 // Create game objects.
-                GameObject ub = PoolManager.Instance.MakeBullet("eubullet");
+                GameObject ub = PoolManager.GetInstance.MakeBullet("eubullet");
                 ub.transform.position = new Vector2(startPoint.x, startPoint.y);
                 ub.SetActive(true);
                 ub.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletMoveDirection.x, bulletMoveDirection.y);
@@ -122,14 +122,14 @@ public class EnemyUFO : MonoBehaviour, IDamage
     }
     private void Dead()
     {
-        SinglePlayManager.Instance.score += 50;
+        SinglePlayManager.GetInstance.score += 50;
 
         sprite.color = new Color(1, 1, 1, 1f);
 
         GameObject effect = Instantiate(explosionEff, transform.position, transform.rotation);
         Destroy(effect, 0.2f);
 
-        EnemySpawn.Instance.uCount--;
+        EnemySpawn.GetInstance.uCount--;
         StateActiveSet();
     }
 

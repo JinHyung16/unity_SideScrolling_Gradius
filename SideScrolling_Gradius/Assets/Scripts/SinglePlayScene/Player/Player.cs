@@ -53,6 +53,9 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(-11, 0);
         startPoint = transform.position;
 
+        delayTime = 1.5f;
+        specialDelay = 4.0f;
+
         playerPower = 1;
         startTime = Time.time;
     }
@@ -79,7 +82,7 @@ public class Player : MonoBehaviour
         if(collision.CompareTag("EBullet") || collision.CompareTag("Enemy"))
         {
             OnDamageBlink();
-            SinglePlayManager.Instance.HealthDown();
+            SinglePlayManager.GetInstance.HealthDown();
         }
         if (collision.CompareTag("PowerItem"))
         {
@@ -165,12 +168,12 @@ public class Player : MonoBehaviour
     }
     private void ReloadTime()
     {
-        curTime += (Time.deltaTime - startTime);
+        curTime += (startTime - Time.deltaTime);
     }
 
     private void SpecialReloadTime()
     {
-        specialTime += (Time.deltaTime - startTime);
+        specialTime += (startTime - Time.deltaTime);
     }
     private void Fire()
     {
@@ -180,19 +183,19 @@ public class Player : MonoBehaviour
             {
                 if (0 < playerPower)
                 {
-                    GameObject b1 = PoolManager.Instance.MakeBullet("pbullet");
+                    GameObject b1 = PoolManager.GetInstance.MakeBullet("pbullet");
                     b1.transform.position = firePointOne.position;
                     b1.SetActive(true);
                     b1.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
                     if (1 < playerPower)
                     {
-                        GameObject b2 = PoolManager.Instance.MakeBullet("pbullet");
+                        GameObject b2 = PoolManager.GetInstance.MakeBullet("pbullet");
                         b2.transform.position = firePointTwo.position;
                         b2.SetActive(true);
                         b2.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
                         if (2 < playerPower)
                         {
-                            GameObject b3 = PoolManager.Instance.MakeBullet("pbullet");
+                            GameObject b3 = PoolManager.GetInstance.MakeBullet("pbullet");
                             b3.transform.position = firePointThree.position;
                             b3.SetActive(true);
                             b3.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
@@ -210,7 +213,7 @@ public class Player : MonoBehaviour
         {
             if (shellCount > 0)
             {
-                GameObject s = PoolManager.Instance.MakeBullet("pshell");
+                GameObject s = PoolManager.GetInstance.MakeBullet("pshell");
                 s.transform.position = fireShellPoint.position;
                 s.SetActive(true);
                 s.GetComponent<Rigidbody2D>().AddForce(Vector2.down * firePower, ForceMode2D.Impulse);
@@ -242,7 +245,7 @@ public class Player : MonoBehaviour
                     Vector2 bulletMoveDirection = (fireDirVector - startPoint).normalized * firePower;
 
                     // Create game objects.
-                    GameObject bs = PoolManager.Instance.MakeBullet("pbulletSp");
+                    GameObject bs = PoolManager.GetInstance.MakeBullet("pbulletSp");
                     bs.transform.position = new Vector2(startPoint.x, startPoint.y);
                     bs.SetActive(true);
                     bs.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletMoveDirection.x, bulletMoveDirection.y);
@@ -270,7 +273,7 @@ public class Player : MonoBehaviour
             shellCount = 0;
         }
 
-        SinglePlayManager.Instance.pshellCount = shellCount;
+        SinglePlayManager.GetInstance.pshellCount = shellCount;
     }
     private void OnDamageBlink()
     {

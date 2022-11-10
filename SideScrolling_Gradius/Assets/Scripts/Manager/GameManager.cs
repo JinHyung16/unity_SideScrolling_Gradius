@@ -37,8 +37,15 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    //map 관련 flag
+    [HideInInspector]
+    public bool isBossStage = false;
+
+    [HideInInspector]
+    public bool isGroundStage = false;
+
     [Tooltip("Play Mode Canvase 및 하위 UI")]
-    public GameObject playModePanel;
+    public GameObject PlayModePanel;
     public Button singlePlayBt;
     public Button multiPlayBt;
 
@@ -65,6 +72,9 @@ public class GameManager : MonoBehaviour
             singlePlayBt.onClick.AddListener(SinglePlayMode);
             multiPlayBt.onClick.AddListener(MultiPlayMode);
 
+            //panel setting
+            PlayModePanel.SetActive(true);
+
             //about nakama server
             await HughServer.GetInstace.ConnecToServer();
 
@@ -74,17 +84,28 @@ public class GameManager : MonoBehaviour
             HughServer.GetInstace.Socket.ReceivedMatchState += m => mainThread.Enqueue(async () => await OnReceivedMatchState(m));
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground"))
+        {
+            isGroundStage = true;
+        }
+    }
     private void SinglePlayMode()
     {
+        PlayModePanel.SetActive(false);
+        
         SceneController.GetInstace.LoadScene("SinglePlay");
+        EnemySpawn.GetInstance.EnemyCoroutineController(true);
     }
 
     private async void MultiPlayMode()
     {
-        SceneController.GetInstace.LoadScene("MultiPlay");
-
+        PlayModePanel.SetActive(false);
         await MatchStart();
+
+        SceneController.GetInstace.LoadScene("MultiPlay");
+        EnemySpawn.GetInstance.EnemyCoroutineController(true);
     }
 
     private async Task MatchStart(int min = 2)

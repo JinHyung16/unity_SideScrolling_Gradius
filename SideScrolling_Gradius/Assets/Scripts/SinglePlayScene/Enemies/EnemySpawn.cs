@@ -7,7 +7,7 @@ public class EnemySpawn : MonoBehaviour
     #region SingleTon
     private static EnemySpawn instance;
 
-    public static EnemySpawn Instance
+    public static EnemySpawn GetInstance
     {
         get
         {
@@ -25,12 +25,9 @@ public class EnemySpawn : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
 
+            BindingIEnumerator();
+        }
     }
     #endregion
 
@@ -45,11 +42,6 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private float uMaxTime = 20.0f;
     [SerializeField] private float gMaxTime = 4.0f;
 
-    private float cTime = 0.0f;
-    private float bTime = 0.0f;
-    private float uTime = 0.0f;
-    private float gTime = 0.0f;
-    private float startTime = 0.0f;
 
     private int chaserYAxis = 0;
     private int boomberYAxis = 0;
@@ -61,167 +53,132 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private int ufoMax = 2;
     [SerializeField] private int groundMax = 3;
 
-    public int cCount = 0;
-    public int bCount = 0;
-    public int uCount = 0;
-    public int gCount = 0;
+    [HideInInspector] public int cCount = 0;
+    [HideInInspector] public int bCount = 0;
+    [HideInInspector] public int uCount = 0;
+    [HideInInspector] public int gCount = 0;
 
-    private void Start()
+    // 코루틴 Start, Stop하기 위해 관리하는 방법
+    IEnumerator bossIEnum;
+    IEnumerator chaserIEnum;
+    IEnumerator boomberIEnum;
+    IEnumerator ufoIEnum;
+    IEnumerator groundIEnum;
+
+    private void BindingIEnumerator()
     {
-        startTime = Time.time;
+        bossIEnum = BossSpawn();
+        chaserIEnum = ChaserSpawn();
+        boomberIEnum = BoomberSpawn();
+        ufoIEnum = UfoSpawn();
+        groundIEnum = GroundSpawn();
     }
 
-    private void Update()
+    public void BossSpawnController()
     {
-        if(PoolManager.Instance != null)
+        if (GameManager.GetInstance.isBossStage)
         {
-            if (SinglePlayManager.Instance.bossSpawn)
+            StartCoroutine(bossIEnum);
+        }
+        else
+        {
+            StopCoroutine(bossIEnum);
+        }
+    }
+
+    public void EnemyCoroutineController(bool active)
+    {
+        if (active == true)
+        {
+            StartCoroutine(chaserIEnum);
+            StartCoroutine(boomberIEnum);
+            StartCoroutine(ufoIEnum);
+            if (SceneController.GetInstace.IsSinglePlayScene())
             {
-                BossSpawn();
-                SinglePlayManager.Instance.bossSpawn = false;
-            }
-
-            if (SinglePlayManager.Instance.isBossStage)
-            {
-                SinglePlayManager.Instance.curTime = 0.0f;
-            }
-
-            CountCheck();
-            ReloadTime();
-
-            if (cCount < chaserMax)
-            {
-                if (cTime > cMaxTime)
-                {
-                    ChaserSpawn();
-                }
-            }
-
-
-            if (bCount < (boomberMax - 3))
-            {
-                if (bTime > bMaxTime)
-                {
-                    BoomberSpawn();
-                }
-            }
-
-
-            if (uCount < ufoMax)
-            {
-                if (uTime > uMaxTime)
-                {
-                    UfoSpawn();
-                }
-            }
-
-            if (gCount < groundMax)
-            {
-                if (gTime > gMaxTime)
-                {
-                    GroundSpawn();
-                }
+                StartCoroutine(groundIEnum);
             }
         }
         else
         {
-            return;
+            StopCoroutine(chaserIEnum);
+            StopCoroutine(boomberIEnum);
+            StopCoroutine(ufoIEnum);
+            StopCoroutine(groundIEnum);
         }
     }
 
-    private void CountCheck()
+    private IEnumerator BossSpawn()
     {
-        if(cCount <= 0)
-        {
-            cCount = 0;
-        }
-        if (bCount <= 0)
-        {
-            bCount = 0;
-        }
-        if (uCount <= 0)
-        {
-            uCount = 0;
-        }
-        if (gCount <= 0)
-        {
-            gCount = 0;
-        }
-    }
-    private void ReloadTime()
-    {
-        cTime += (Time.deltaTime - startTime);
-        bTime += (Time.deltaTime - startTime);
-        uTime += (Time.deltaTime - startTime);
-        gTime += (Time.deltaTime - startTime);
-    }
-    
-    private void BossSpawn()
-    {
-        GameObject boss = PoolManager.Instance.MakeBoss();
+        GameObject boss = PoolManager.GetInstance.MakeBoss();
         boss.transform.position = bossSpawnPoint.position;
         boss.SetActive(true);
+
+        yield return null;
     }
-    private void ChaserSpawn()
+
+    private IEnumerator ChaserSpawn()
     {
-        if (!SinglePlayManager.Instance.isBossStage)
+        while (true)
         {
-            chaserYAxis = Random.Range(-7, 7);
-            GameObject ec = PoolManager.Instance.MakeEnemy("chaser");
-            ec.transform.position = new Vector2(chaserSpawnPoint.position.x, chaserYAxis);
-            cCount++;
-            cTime = 0.0f;
-        }
-        else
-        {
-            cTime = 0.0f;
-            return;
+            if (cCount < chaserMax)
+            {
+                chaserYAxis = Random.Range(-7, 7);
+                GameObject ec = PoolManager.GetInstance.MakeEnemy("chaser");
+                ec.transform.position = new Vector2(chaserSpawnPoint.position.x, chaserYAxis);
+                cCount++;
+            }
+
+            yield return Cashing.YieldInstruction.WaitForSeconds(cMaxTime);
         }
     }
-    private void BoomberSpawn()
+    private IEnumerator BoomberSpawn()
     {
-        boomberYAxis = Random.Range(-4, 4);
-        // 한번에 본인 기준 위 아래 총 3개 생성
-        for (int i = -1; i < 2; i++)
+        while (true)
         {
-            GameObject eb = PoolManager.Instance.MakeEnemy("boomber");
-            eb.transform.position = new Vector2(boomberSpawnPoint.position.x, boomberYAxis + i);
-            eb.SetActive(true);
-            bCount++;
+            if (bCount < boomberMax)
+            {
+                boomberYAxis = Random.Range(-4, 4);
+                // 한번에 본인 기준 위 아래 총 3개 생성
+                for (int i = -1; i < 2; i++)
+                {
+                    GameObject eb = PoolManager.GetInstance.MakeEnemy("boomber");
+                    eb.transform.position = new Vector2(boomberSpawnPoint.position.x, boomberYAxis + i);
+                    eb.SetActive(true);
+                    bCount++;
+                }
+            }
+            yield return Cashing.YieldInstruction.WaitForSeconds(bMaxTime);
         }
-        bTime = 0.0f;
     }
-    private void UfoSpawn()
+    private IEnumerator UfoSpawn()
     {
-        if (!SinglePlayManager.Instance.isBossStage)
+        while (true)
         {
-            ufoYAxis = Random.Range(-4, 4);
-            GameObject eu = PoolManager.Instance.MakeEnemy("ufo");
-            eu.transform.position = new Vector2(ufoSpawnPoint.position.x, ufoYAxis);
-            uCount++;
-            uTime = 0.0f;
-        }
-        else
-        {
-            uTime = 0.0f;
-            return;
+            if (uCount < ufoMax)
+            {
+                ufoYAxis = Random.Range(-4, 4);
+                GameObject eu = PoolManager.GetInstance.MakeEnemy("ufo");
+                eu.transform.position = new Vector2(ufoSpawnPoint.position.x, ufoYAxis);
+                uCount++;
+            }
+            yield return Cashing.YieldInstruction.WaitForSeconds(uMaxTime);
         }
     }
 
-    private void GroundSpawn()
+    private IEnumerator GroundSpawn()
     {
-        if (SinglePlayManager.Instance.isGroundStage && !SinglePlayManager.Instance.isBossStage)
+        while (true)
         {
-            groudXAxis = Random.Range(-8, 5);
-            GameObject eg = PoolManager.Instance.MakeEnemy("ground");
-            eg.transform.position = new Vector2(groudXAxis, groundSpawnPoint.position.y);
-            gCount++;
-            gTime = 0.0f;
-        }
-        else
-        {
-            gTime = 0.0f;
-            return;
+            if (GameManager.GetInstance.isGroundStage && gCount < groundMax 
+                && !GameManager.GetInstance.isBossStage)
+            {
+                groudXAxis = Random.Range(-8, 5);
+                GameObject eg = PoolManager.GetInstance.MakeEnemy("ground");
+                eg.transform.position = new Vector2(groudXAxis, groundSpawnPoint.position.y);
+                gCount++;
+            }
+
+            yield return Cashing.YieldInstruction.WaitForSeconds(gMaxTime);
         }
     }
 }

@@ -45,7 +45,7 @@ public class BackGround : MonoBehaviour
         backGroundSpace.transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         backGroundGround.transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
 
-        if(!SinglePlayManager.Instance.isBossStage)
+        if(!GameManager.GetInstance.isBossStage)
         {
             if (backGroundGround.transform.position.x <= -6.0f)
             {

@@ -30,7 +30,7 @@ public class WeaponController : MonoBehaviour
 
     public void AttackFire()
     {
-        var bullet = PoolManager.Instance.MakeBullet("pbullet");
+        var bullet = PoolManager.GetInstance.MakeBullet("pbullet");
         bullet.SetActive(true);
         bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
     }

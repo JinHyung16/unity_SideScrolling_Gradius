@@ -7,7 +7,7 @@ sealed class PoolManager : MonoBehaviour
     #region SingleTon
     private static PoolManager instance;
 
-    public static PoolManager Instance
+    public static PoolManager GetInstance
     {
         get
         {
@@ -26,15 +26,9 @@ sealed class PoolManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
 
-            BindingObject();
             Setting();
             Pooling();
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-
     }
     #endregion
     // item
@@ -78,65 +72,6 @@ sealed class PoolManager : MonoBehaviour
     private GameObject[] enemys;
     private GameObject[] bullets;
 
-    private void BindingObject()
-    {
-        if (powerItem == null)
-        {
-            powerItem = Resources.Load("PowerItem") as GameObject;
-        }
-        if (shellItem == null)
-        {
-            shellItem = Resources.Load("ShellItem") as GameObject;
-        }
-        if (eChaser == null)
-        {
-            eChaser = Resources.Load("EnemyChaser") as GameObject;
-        }
-        if (eBoomber == null)
-        {
-            eBoomber = Resources.Load("EnemyBoomber") as GameObject;
-        }
-        if (eUFO == null)
-        {
-            eUFO = Resources.Load("EnemyUFO") as GameObject;
-        }
-        if (eGround == null)
-        {
-            eGround = Resources.Load("EnemyGround") as GameObject;
-        }
-        if (eBoss == null)
-        {
-            eBoss = Resources.Load("EnemyBoss") as GameObject;
-        }
-        if (pBullet == null)
-        {
-            pBullet = Resources.Load("PBulletOne") as GameObject;
-        }
-        if (pBulletSp == null)
-        {
-            pBulletSp = Resources.Load("PBulletSpecial") as GameObject;
-        }
-        if (pShell == null)
-        {
-            pShell = Resources.Load("PBulletShell") as GameObject;
-        }
-        if (egBullet == null)
-        {
-            egBullet = Resources.Load("EBulletGround") as GameObject;
-        }
-        if (euBullet == null)
-        {
-            euBullet = Resources.Load("EBulletUFO") as GameObject;
-        }
-        if (ebBullet == null)
-        {
-            ebBullet = Resources.Load("EBulletBoss") as GameObject;
-        }
-        if (ebShell == null)
-        {
-            ebShell = Resources.Load("EBossShell") as GameObject;
-        }
-    }
     private void Setting()
     {
         powers = new GameObject[5];
@@ -163,83 +98,97 @@ sealed class PoolManager : MonoBehaviour
             powers[i] = Instantiate(powerItem);
             powers[i].name = "PowerItem";
             powers[i].SetActive(false);
+            DontDestroyOnLoad(powers[i]);
         }
         for (int i = 0; i < shells.Length; i++)
         {
             shells[i] = Instantiate(shellItem);
             shells[i].name = "ShellItem";
             shells[i].SetActive(false);
+            DontDestroyOnLoad(shells[i]);
         }
         for (int i = 0; i<chasers.Length; i++)
         {
             chasers[i] = Instantiate(eChaser);
             chasers[i].name = "EnemyChaser";
             chasers[i].SetActive(false);
+            DontDestroyOnLoad(chasers[i]);
         }
         for (int i = 0; i < boombers.Length; i++)
         {
             boombers[i] = Instantiate(eBoomber);
             boombers[i].name = "EnemyBoomber";
             boombers[i].SetActive(false);
+            DontDestroyOnLoad(boombers[i]);
         }
         for (int i = 0; i < ufos.Length; i++)
         {
             ufos[i] = Instantiate(eUFO);
             ufos[i].name = "EnemyUFO";
             ufos[i].SetActive(false);
+            DontDestroyOnLoad(ufos[i]);
         }
         for (int i = 0; i < grounds.Length; i++)
         {
             grounds[i] = Instantiate(eGround);
             grounds[i].name = "EnemyGround";
             grounds[i].SetActive(false);
+            DontDestroyOnLoad(grounds[i]);
         }
 
         boss = Instantiate(eBoss);
         boss.name = "EnemyBoss";
         boss.SetActive(false);
+        DontDestroyOnLoad(boss);
 
         for(int i = 0; i<pbullets.Length; i++)
         {
             pbullets[i] = Instantiate(pBullet);
             pbullets[i].name = "PBulletOne";
             pbullets[i].SetActive(false);
+            DontDestroyOnLoad(pbullets[i]);
         }
         for(int i = 0; i<pbulletsSp.Length; i++)
         {
             pbulletsSp[i] = Instantiate(pBulletSp);
             pbulletsSp[i].name = "PBulletSpecial";
             pbulletsSp[i].SetActive(false);
+            DontDestroyOnLoad(pbulletsSp[i]);
         }
         for (int i = 0; i < pshells.Length; i++)
         {
             pshells[i] = Instantiate(pShell);
             pshells[i].name = "PBulletShell";
             pshells[i].SetActive(false);
+            DontDestroyOnLoad(pshells[i]);
         }
         for (int i = 0; i < egbullets.Length; i++)
         {
             egbullets[i] = Instantiate(egBullet);
             egbullets[i].name = "EBulletGround";
             egbullets[i].SetActive(false);
+            DontDestroyOnLoad(egbullets[i]);
         }
         for (int i = 0; i < eubullets.Length; i++)
         {
             eubullets[i] = Instantiate(euBullet);
             eubullets[i].name = "EBulletUFO";
             eubullets[i].SetActive(false);
+            DontDestroyOnLoad(eubullets[i]);
         }
         for (int i = 0; i < ebbullets.Length; i++)
         {
             ebbullets[i] = Instantiate(ebBullet);
             ebbullets[i].name = "EBulletBoss";
             ebbullets[i].SetActive(false);
+            DontDestroyOnLoad(ebbullets[i]);
         }
         for (int i = 0; i < ebshells.Length; i++)
         {
             ebshells[i] = Instantiate(ebShell);
             ebshells[i].name = "EBossShell";
             ebshells[i].SetActive(false);
+            DontDestroyOnLoad(ebshells[i]);
         }
     }
 

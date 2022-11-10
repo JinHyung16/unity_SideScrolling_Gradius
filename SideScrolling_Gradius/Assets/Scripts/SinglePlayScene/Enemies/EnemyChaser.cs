@@ -51,7 +51,7 @@ public class EnemyChaser : MonoBehaviour, IDamage
 
     private void OnEnable()
     {
-        if (PoolManager.Instance != null)
+        if (PoolManager.GetInstance != null)
         {
             hp = 40;
             HP = hp;
@@ -85,12 +85,12 @@ public class EnemyChaser : MonoBehaviour, IDamage
 
     private void Dead()
     {
-        SinglePlayManager.Instance.score += 10;
+        SinglePlayManager.GetInstance.score += 10;
 
         GameObject effect = Instantiate(explosionEff, transform.position, transform.rotation);
         Destroy(effect, 0.2f);
 
-        EnemySpawn.Instance.cCount--;
+        EnemySpawn.GetInstance.cCount--;
         StateActiveSet();
     }
 

@@ -8,9 +8,9 @@ public class MultiPlayManager : MonoBehaviour
 {
 
     [Tooltip("Cashing the InGame Canvase")]
-    public GameObject InGameCanvase;
+    public GameObject InGamePanel;
     [Tooltip("Cashing the Result Canvase")]
-    public GameObject ResultCanvas;
+    public GameObject ResultPanel;
 
     [Tooltip("Exit Button")]
     public Button exitBt;
@@ -19,37 +19,12 @@ public class MultiPlayManager : MonoBehaviour
     public Text inScoreTxt;
 
     [Tooltip("Result Score Text")]
-    public Text scoreTxt;
+    public Text resultScoreTxt;
 
     private void Start()
     {
-        if (InGameCanvase == null)
-        {
-            InGameCanvase = Resources.Load("UICanvas/InGame Canvas") as GameObject;
-        }
-        if (InGameCanvase == null)
-        {
-            ResultCanvas = Resources.Load("UICanvas/Result Canvas") as GameObject;
-        }
-
-        //binding text
-        if (inScoreTxt == null)
-        {
-            inScoreTxt = InGameCanvase.GetComponentsInChildren<Text>().First<Text>();
-        }
-        if (inScoreTxt == null)
-        {
-            scoreTxt = ResultCanvas.GetComponentsInChildren<Text>().First<Text>();
-        }
-
-        //binding button
-        if (exitBt == null)
-        {
-            exitBt = ResultCanvas.GetComponentsInChildren<Button>().First<Button>();
-        }
-
-        InGameCanvase.SetActive(true);
-        ResultCanvas.SetActive(false);
+        InGamePanel.SetActive(true);
+        ResultPanel.SetActive(false);
         exitBt.onClick.AddListener(ExitMultiPlay);
     }
 

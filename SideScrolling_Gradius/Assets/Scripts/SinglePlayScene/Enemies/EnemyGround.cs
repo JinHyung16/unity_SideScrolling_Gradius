@@ -58,7 +58,7 @@ public class EnemyGround : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (PoolManager.Instance != null)
+        if (PoolManager.GetInstance != null)
         {
             hp = 60;
             HP = hp;
@@ -91,7 +91,7 @@ public class EnemyGround : MonoBehaviour
         {
             for(int i = 0; i< 3; i++)
             {
-                GameObject eg = PoolManager.Instance.MakeBullet("egbullet");
+                GameObject eg = PoolManager.GetInstance.MakeBullet("egbullet");
                 eg.transform.position = firePoint.position;
                 eg.SetActive(true);
                 eg.GetComponent<Rigidbody2D>().AddForce(Vector2.up * firePower, ForceMode2D.Impulse);
@@ -122,12 +122,12 @@ public class EnemyGround : MonoBehaviour
 
     private void Dead()
     {
-        SinglePlayManager.Instance.score += 10;
+        SinglePlayManager.GetInstance.score += 10;
 
         GameObject effect = Instantiate(explosionEff, transform.position, transform.rotation);
         Destroy(effect, 0.2f);
 
-        EnemySpawn.Instance.gCount--;
+        EnemySpawn.GetInstance.gCount--;
         this.gameObject.SetActive(false);
     }
 
