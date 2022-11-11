@@ -49,4 +49,14 @@ public class PlayerNetworkLocalSync : MonoBehaviour
             GameManager.GetInstance.LocalPlayerDied(this.gameObject);
         }
     }
+
+    private void OnEnable()
+    {
+        GameManager.GetInstance.IsSpawnLocal = true;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.GetInstance.IsSpawnLocal = false;
+    }
 }

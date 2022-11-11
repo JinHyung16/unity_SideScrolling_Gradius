@@ -24,7 +24,17 @@ public class EnemyChaser : MonoBehaviour, IDamage
 
     private void Update()
     {
-        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        if (SceneController.GetInstace.IsSinglePlayScene())
+        {
+            playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        else
+        {
+            if (GameManager.GetInstance.IsSpawnLocal && GameManager.GetInstance.IsSpawnRemote)
+            {
+                playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+        }
         Movement();
     }
 

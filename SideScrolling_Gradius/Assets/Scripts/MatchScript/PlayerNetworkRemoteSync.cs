@@ -58,6 +58,12 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
         {
             HughServer.GetInstace.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
         }
+        GameManager.GetInstance.IsSpawnRemote = false;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.GetInstance.IsSpawnRemote = true;
     }
 
     private void EnqueueOnReceivedMatchState(IMatchState matchState)

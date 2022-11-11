@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8767115584382620422}
   - component: {fileID: 8804195190506925977}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RemotePlayerAsync
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4f3ca6c2ba5724c4c90aee322cf79137, type: 3}
   m_Color: {r: 0, g: 1, b: 0.24621558, a: 1}
   m_FlipX: 0

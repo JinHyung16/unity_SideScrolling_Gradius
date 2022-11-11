@@ -37,10 +37,17 @@ public class BackGround : MonoBehaviour
     }
     private void Update()
     {
-        MoveBackGround();
+        if (SceneController.GetInstace.IsSinglePlayScene())
+        {
+            SinglePlayMoveBackGround();
+        }
+        else
+        {
+            MultiPlayMoveBackGround();
+        }
     }
 
-    private void MoveBackGround()
+    private void SinglePlayMoveBackGround()
     {
         backGroundSpace.transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         backGroundGround.transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
@@ -68,6 +75,21 @@ public class BackGround : MonoBehaviour
                     backGroundGround.SetActive(false);
                     backGroundGround.transform.position = new Vector2(77, 0);
                 }
+            }
+        }
+    }
+
+    private void MultiPlayMoveBackGround()
+    {
+        if (backGroundGround.transform.position.x <= -10.0f)
+        {
+            backGroundSpace.SetActive(true);
+            backGroundSpace.transform.position = new Vector2(22, 0);
+
+            if (backGroundSpace.transform.position.x <= -18.0f)
+            {
+                backGroundGround.SetActive(false);
+                backGroundGround.transform.position = new Vector2(77, 0);
             }
         }
     }

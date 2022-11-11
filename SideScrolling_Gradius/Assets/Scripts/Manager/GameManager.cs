@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour
     //플레이어 스폰 위치 받기
     public GameObject spawnPoint;
 
+    [HideInInspector] public bool IsSpawnLocal = false;
+    [HideInInspector] public bool IsSpawnRemote = false;
+
     private async void Start()
     {
         if (this.gameObject != null)
@@ -76,9 +79,11 @@ public class GameManager : MonoBehaviour
             PlayModePanel.SetActive(true);
 
             //about nakama server
+            playerDictionary = new Dictionary<string, GameObject>();
+            var mainThread = new UnityMainThreadDispatcher();
+
             await HughServer.GetInstace.ConnecToServer();
 
-            var mainThread = new UnityMainThreadDispatcher(); 
             HughServer.GetInstace.Socket.ReceivedMatchmakerMatched += m => mainThread.Enqueue(() => OnRecivedMatchMakerMatched(m));
             HughServer.GetInstace.Socket.ReceivedMatchPresence += m => mainThread.Enqueue(() => OnReceivedMatchPresence(m));
             HughServer.GetInstace.Socket.ReceivedMatchState += m => mainThread.Enqueue(async () => await OnReceivedMatchState(m));
@@ -103,16 +108,15 @@ public class GameManager : MonoBehaviour
     private async void MultiPlayMode()
     {
         PlayModePanel.SetActive(false);
-        await MatchStart();
 
+        await MatchStart();
         SceneController.GetInstace.LoadScene("MultiPlay");
-        UIManager.GetInstance.CanvasActive("gamestart", true);
-        EnemySpawn.GetInstance.EnemyCoroutineController(true);
+       // UIManager.GetInstance.CanvasActive("gamestart", true);
     }
 
     private async Task MatchStart(int min = 2)
     {
-        var matchMakingTicket = await HughServer.GetInstace.Socket.AddMatchmakerAsync("*", min, 3);
+        var matchMakingTicket = await HughServer.GetInstace.Socket.AddMatchmakerAsync("*", min, 8);
         ticket = matchMakingTicket.Ticket;
 #if UNITY_EDITOR
         Debug.LogFormat("<color=green><b>[Find Match]</b> Ticket : {0} </color>", ticket);
@@ -126,15 +130,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        var spawns = this.gameObject.transform;
-        if (spawnIndex == -1)
-        {
-            spawns = spawnPoint.transform.GetChild(Random.Range(0, spawnPoint.transform.childCount));
-        }
-        else
-        {
-            spawns = spawnPoint.transform.GetChild(spawnIndex);
-        }
+        var spawns = spawnIndex == -1 ?
+            spawnPoint.transform.GetChild(Random.Range(0, spawnPoint.transform.childCount))
+            : spawnPoint.transform.GetChild(spawnIndex);
+   
 
         var isLocalPlayer = user.SessionId == localUser.SessionId;
         var playerPrefab = isLocalPlayer ? NetworkLocalPlayerPrefab : NetworkRemotePlayerPrefab;

@@ -78,9 +78,6 @@ public class UIManager : MonoBehaviour
         CanvasActive("all", false);
 
         PlaySound("Start");
-
-        // pause the singlePlayScene
-        Time.timeScale = 0;
     }
 
     private void Update()
@@ -92,6 +89,12 @@ public class UIManager : MonoBehaviour
             GameManager.GetInstance.isBossStage = true;
 
             EnemySpawn.GetInstance.BossSpawnController();
+        }
+
+        if (GameManager.GetInstance.IsSpawnLocal && GameManager.GetInstance.IsSpawnRemote &&
+            !SceneController.GetInstace.IsSinglePlayScene())
+        {
+            EnemySpawn.GetInstance.EnemyCoroutineController(true);
         }
 
         ScoreUpdate();
@@ -159,8 +162,6 @@ public class UIManager : MonoBehaviour
             hpImgs[i].color = new Color(1, 1, 1, 1);
         }
 
-        Time.timeScale = 0;
-
         if (!SceneController.GetInstace.IsSinglePlayScene())
         {
             await GameManager.GetInstance.QuickMatch();
@@ -174,7 +175,6 @@ public class UIManager : MonoBehaviour
         resultScoreText.text = "Score " + score.ToString();
         PlaySound("Over");
         CanvasActive("result", true);
-        Time.timeScale = 0;
     }
 
     public void GameClear()
@@ -187,8 +187,6 @@ public class UIManager : MonoBehaviour
 
         resultScoreText.text = "Score " + score.ToString();
         PlaySound("Over");
-
-        Time.timeScale = 0;
     }
 
     private void PlaySound(string name)

@@ -40,6 +40,17 @@ public class MatchDataJson
         return values.ToJson();
     }
 
+    //매치 진입 수 리스폰 해주는 OpCodes 던지기 위해선 필요
+    public static string Respawned(int spawnIndex)
+    {
+        var values = new Dictionary<string, string>
+        {
+            { "spawnIndex", spawnIndex.ToString() },
+        };
+
+        return values.ToJson();
+    }
+
     public static string Died(Vector2 position)
     {
         var values = new Dictionary<string, string>
