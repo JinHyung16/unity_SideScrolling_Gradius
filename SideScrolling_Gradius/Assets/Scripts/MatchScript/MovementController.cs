@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     {
         rigid2D = GetComponent<Rigidbody2D>();
 
-        moveSpeed = 0.5f;
+        moveSpeed = 7f;
         checkBorderPos = 0; //기본은 충돌 안한상태로 두기
     }
 

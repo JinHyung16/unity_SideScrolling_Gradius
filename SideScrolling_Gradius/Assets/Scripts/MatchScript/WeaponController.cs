@@ -21,16 +21,21 @@ public class WeaponController : MonoBehaviour
     private void Update()
     {
         fireDelay -= Time.deltaTime;
-        if (fireDelay <= 0)
-        {
-            AttackFire();
-            fireDelay = reloadTime;
-        }
     }
 
     public void AttackFire()
     {
+        if (fireDelay <= 0)
+        {
+            Fire();
+            fireDelay = reloadTime;
+        }
+    }
+
+    private void Fire()
+    {
         var bullet = PoolManager.GetInstance.MakeBullet("pbullet");
+        bullet.transform.position = firePose.position;
         bullet.SetActive(true);
         bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
     }

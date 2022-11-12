@@ -1,7 +1,6 @@
 using Nakama;
 using Nakama.TinyJson;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
@@ -29,10 +28,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
         }
     }
     #endregion
@@ -64,8 +59,8 @@ public class GameManager : MonoBehaviour
     //플레이어 스폰 위치 받기
     public GameObject spawnPoint;
 
-    [HideInInspector] public bool IsSpawnLocal = false;
-    [HideInInspector] public bool IsSpawnRemote = false;
+    //[HideInInspector] public bool IsSpawnLocal = false;
+    //[HideInInspector] public bool IsSpawnRemote = false;
 
     private async void Start()
     {
@@ -80,7 +75,7 @@ public class GameManager : MonoBehaviour
 
             //about nakama server
             playerDictionary = new Dictionary<string, GameObject>();
-            var mainThread = new UnityMainThreadDispatcher();
+            var mainThread = UnityMainThreadDispatcher.Instance();
 
             await HughServer.GetInstace.ConnecToServer();
 
@@ -247,10 +242,10 @@ public class GameManager : MonoBehaviour
                 playerDictionary.Remove(userSessionId);
                 if (playerDictionary.Count == 0)
                 {
-                    //GameOver();
+                    UIManager.GetInstance.GameOver();
                 }
                 break;
-            case OpCodes.Respawn:
+            case OpCodes.SpawnPlayer:
                 SpawnPlayer(currentMatch.Id, matchState.UserPresence, int.Parse(state["spawnIndex"]));
                 break;
             default:

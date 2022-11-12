@@ -36,7 +36,7 @@ public class InputController : MonoBehaviour
     private void InputControl()
     {
         var horizontal = Input.GetAxisRaw("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
+        var vertical = Input.GetAxisRaw("Vertical");
         var fire = Input.GetKeyDown(fireKeyCode);
 
         //Preventing you from leaving the screen in the event of a collision with "Border"

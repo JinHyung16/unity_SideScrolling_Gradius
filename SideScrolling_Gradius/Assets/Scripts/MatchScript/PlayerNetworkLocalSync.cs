@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerNetworkLocalSync : MonoBehaviour
 {
-    private InputController playerInputController;
+    public InputController playerInputController;
 
-    private Rigidbody2D rigidbody2D;
+    public Rigidbody2D rigidbody2D;
     private Transform playerTransform;
 
-    public float StateSyncTimer = 0.1f;
+    public float stateFrequency = 0.1f;
     private float stateSyncTimer = 0.0f;
 
     private void Start()
@@ -18,17 +18,18 @@ public class PlayerNetworkLocalSync : MonoBehaviour
 
         rigidbody2D = GetComponentInChildren<Rigidbody2D>();
         playerTransform = rigidbody2D.GetComponent<Transform>();
+
+        stateFrequency = 0.05f;
     }
 
     private void LateUpdate()
     {
         if (stateSyncTimer <= 0)
         {
-
             GameManager.GetInstance.SendMatchState(OpCodes.Position,
-                MatchDataJson.PositionAndVelocity(rigidbody2D.velocity, playerTransform.position));
+                MatchDataJson.Position(rigidbody2D.velocity, playerTransform.position));
 
-            stateSyncTimer = StateSyncTimer;
+            stateSyncTimer = stateFrequency;
         }
 
         stateSyncTimer -= Time.deltaTime;
@@ -50,6 +51,7 @@ public class PlayerNetworkLocalSync : MonoBehaviour
         }
     }
 
+    /*
     private void OnEnable()
     {
         GameManager.GetInstance.IsSpawnLocal = true;
@@ -59,4 +61,5 @@ public class PlayerNetworkLocalSync : MonoBehaviour
     {
         GameManager.GetInstance.IsSpawnLocal = false;
     }
+    */
 }

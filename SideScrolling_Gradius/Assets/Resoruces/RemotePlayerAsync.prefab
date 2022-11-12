@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ea97630b10b584d9bc0d217049323c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementController: {fileID: 6469121019465461033}
+  weaponController: {fileID: 762130479503463534}
   LerpTime: 0.05
   rigid2D: {fileID: 4554408243426049969}
   playerTransform: {fileID: 6964556874221657698}

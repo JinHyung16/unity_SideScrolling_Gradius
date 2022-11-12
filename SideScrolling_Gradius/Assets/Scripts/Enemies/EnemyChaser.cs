@@ -30,10 +30,12 @@ public class EnemyChaser : MonoBehaviour, IDamage
         }
         else
         {
+            /*
             if (GameManager.GetInstance.IsSpawnLocal && GameManager.GetInstance.IsSpawnRemote)
             {
                 playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
             }
+            */
         }
         Movement();
     }

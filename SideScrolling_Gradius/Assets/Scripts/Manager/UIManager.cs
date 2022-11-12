@@ -91,11 +91,13 @@ public class UIManager : MonoBehaviour
             EnemySpawn.GetInstance.BossSpawnController();
         }
 
+        /*
         if (GameManager.GetInstance.IsSpawnLocal && GameManager.GetInstance.IsSpawnRemote &&
             !SceneController.GetInstace.IsSinglePlayScene())
         {
             EnemySpawn.GetInstance.EnemyCoroutineController(true);
         }
+        */
 
         ScoreUpdate();
 
@@ -168,7 +170,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         isOver = true;
         GameManager.GetInstance.isBossStage = false;

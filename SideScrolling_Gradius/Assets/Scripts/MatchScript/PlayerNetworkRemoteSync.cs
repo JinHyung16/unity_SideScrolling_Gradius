@@ -10,8 +10,8 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
     [HideInInspector]
     public RemotePlayerNetworkData netWorkData;
 
-    private MovementController movementController;
-    private WeaponController weaponController;
+    public MovementController movementController;
+    public WeaponController weaponController;
 
     //interpolation to the player move speed -> 플레이어 움직임 동기화 자연스럽게
     public float LerpTime = 0.05f;
@@ -58,12 +58,12 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
         {
             HughServer.GetInstace.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
         }
-        GameManager.GetInstance.IsSpawnRemote = false;
+        //GameManager.GetInstance.IsSpawnRemote = false;
     }
 
     private void OnEnable()
     {
-        GameManager.GetInstance.IsSpawnRemote = true;
+        //GameManager.GetInstance.IsSpawnRemote = true;
     }
 
     private void EnqueueOnReceivedMatchState(IMatchState matchState)

@@ -245,7 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea593b6a6c33f14fb310b41844eb942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StateSyncTimer: 0.1
+  playerInputController: {fileID: 763933122635110193}
+  rigidbody2D: {fileID: 3882357668866372112}
+  stateFrequency: 0.05
 --- !u!1 &3789471867559586184
 GameObject:
   m_ObjectHideFlags: 0

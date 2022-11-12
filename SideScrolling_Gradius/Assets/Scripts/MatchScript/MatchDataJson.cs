@@ -5,7 +5,7 @@ using Nakama.TinyJson;
 
 public class MatchDataJson
 {
-    public static string PositionAndVelocity(Vector2 velocity, Vector2 position)
+    public static string Position(Vector2 velocity, Vector2 position)
     {
         var values = new Dictionary<string, string>
         {
@@ -41,11 +41,24 @@ public class MatchDataJson
     }
 
     //매치 진입 수 리스폰 해주는 OpCodes 던지기 위해선 필요
-    public static string Respawned(int spawnIndex)
+    public static string SpawnPlayer(int spawnIndex)
     {
         var values = new Dictionary<string, string>
         {
             { "spawnIndex", spawnIndex.ToString() },
+        };
+
+        return values.ToJson();
+    }
+
+    public static string EnemyPosition(Vector2 velocity, Vector2 position)
+    {
+        var values = new Dictionary<string, string>
+        {
+            {"velocity.x", velocity.x.ToString() },
+            {"velocity.y", velocity.y.ToString() },
+            {"position.x", position.x.ToString() },
+            {"position.y", position.y.ToString() }
         };
 
         return values.ToJson();
