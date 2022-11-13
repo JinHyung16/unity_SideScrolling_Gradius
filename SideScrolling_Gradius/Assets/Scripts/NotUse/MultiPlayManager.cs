@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MultiPlayManager : MonoBehaviour
 {
-
+    /*
     [Tooltip("Cashing the InGame Canvase")]
     public GameObject InGamePanel;
     [Tooltip("Cashing the Result Canvase")]
@@ -33,4 +33,5 @@ public class MultiPlayManager : MonoBehaviour
         await GameManager.GetInstance.QuickMatch();
         SceneController.GetInstace.LoadScene("Main");
     }
+    */
 }

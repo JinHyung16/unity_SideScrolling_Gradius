@@ -72,6 +72,11 @@ sealed class PoolManager : MonoBehaviour
     private GameObject[] enemys;
     private GameObject[] bullets;
 
+    //multiplay enemy
+    public GameObject multiChaser;
+
+    private GameObject[] multiChasers;
+
     private void Setting()
     {
         powers = new GameObject[5];
@@ -89,6 +94,8 @@ sealed class PoolManager : MonoBehaviour
         eubullets = new GameObject[200];
         ebbullets = new GameObject[500];
         ebshells = new GameObject[30];
+
+        multiChasers = new GameObject[30];
     }
 
     private void Pooling()
@@ -190,6 +197,14 @@ sealed class PoolManager : MonoBehaviour
             ebshells[i].SetActive(false);
             DontDestroyOnLoad(ebshells[i]);
         }
+
+        for (int i = 0; i < multiChasers.Length; i++)
+        {
+            multiChasers[i] = Instantiate(multiChaser);
+            multiChasers[i].name = "MultiEnemyChaser";
+            multiChasers[i].SetActive(false);
+            DontDestroyOnLoad(multiChasers[i]);
+        }
     }
 
     public GameObject MakeItem(string name)
@@ -230,6 +245,9 @@ sealed class PoolManager : MonoBehaviour
                 break;
             case "ground":
                 enemys = grounds;
+                break;
+            case "multiChaser":
+                enemys = multiChasers;
                 break;
         }
 

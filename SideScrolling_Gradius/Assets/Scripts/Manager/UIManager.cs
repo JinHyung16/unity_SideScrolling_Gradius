@@ -7,14 +7,13 @@ public class UIManager : MonoBehaviour
 {
     #region Singleton
     private static UIManager instance;
-
     public static UIManager GetInstance
     {
         get
         {
             if (instance == null)
             {
-                return null;
+                return instance;
             }
             return instance;
         }
@@ -29,12 +28,11 @@ public class UIManager : MonoBehaviour
         }
     }
     #endregion
-
     private AudioSource audio;
 
     [Tooltip("Can Change the value used by range")]
     [Range(0, 120)][SerializeField] private float bossTime = 120.0f;
-
+    [HideInInspector] public float dontUpdateTime = 0.0f;
     public float curTime = 0.0f;
     private float startTime = 0.0f;
 
@@ -68,6 +66,7 @@ public class UIManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
 
         bossTime = Random.Range(60, 121);
+        dontUpdateTime = bossTime + 1;
         startTime = Time.time;
 
         scoreText.text = "SCORE " + score.ToString();
@@ -83,7 +82,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         curTime += (Time.deltaTime - startTime);
-        if (curTime > bossTime)
+        if (bossTime < curTime && curTime <= dontUpdateTime)
         {
             GameManager.GetInstance.isGroundStage = false;
             GameManager.GetInstance.isBossStage = true;
@@ -138,18 +137,21 @@ public class UIManager : MonoBehaviour
     private void GameStart()
     {
         CanvasActive("gamestart", false);
-        if (SceneController.GetInstace.IsSinglePlayScene())
+        if (SceneController.GetInstance.IsSinglePlayScene())
         {
             CanvasActive("single", true);
         }
+        if (!SceneController.GetInstance.IsSinglePlayScene())
+        {
+            EnemySpawn.GetInstance.MultiEnemyStartCoroutine();
+        }
         CanvasActive("score", true);
         audio.Stop();
-        Time.timeScale = 1;
     }
 
     private async void ExitGame()
     {
-        SceneController.GetInstace.LoadScene("Main");
+        SceneController.GetInstance.LoadScene("Main");
 
         CanvasActive("all", false);
 
@@ -164,7 +166,7 @@ public class UIManager : MonoBehaviour
             hpImgs[i].color = new Color(1, 1, 1, 1);
         }
 
-        if (!SceneController.GetInstace.IsSinglePlayScene())
+        if (!SceneController.GetInstance.IsSinglePlayScene())
         {
             await GameManager.GetInstance.QuickMatch();
         }

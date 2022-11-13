@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
-    #region SingleTon
+    #region Singleton
     private static GameManager instance;
     public static GameManager GetInstance
     {
@@ -15,9 +15,8 @@ public class GameManager : MonoBehaviour
         {
             if (instance == null)
             {
-                return null;
+                return instance;
             }
-
             return instance;
         }
     }
@@ -59,8 +58,8 @@ public class GameManager : MonoBehaviour
     //플레이어 스폰 위치 받기
     public GameObject spawnPoint;
 
-    //[HideInInspector] public bool IsSpawnLocal = false;
-    //[HideInInspector] public bool IsSpawnRemote = false;
+    [HideInInspector] public bool IsSpawnLocal = false;
+    [HideInInspector] public bool IsSpawnRemote = false;
 
     private async void Start()
     {
@@ -77,11 +76,11 @@ public class GameManager : MonoBehaviour
             playerDictionary = new Dictionary<string, GameObject>();
             var mainThread = UnityMainThreadDispatcher.Instance();
 
-            await HughServer.GetInstace.ConnecToServer();
+            await HughServer.GetInstance.ConnecToServer();
 
-            HughServer.GetInstace.Socket.ReceivedMatchmakerMatched += m => mainThread.Enqueue(() => OnRecivedMatchMakerMatched(m));
-            HughServer.GetInstace.Socket.ReceivedMatchPresence += m => mainThread.Enqueue(() => OnReceivedMatchPresence(m));
-            HughServer.GetInstace.Socket.ReceivedMatchState += m => mainThread.Enqueue(async () => await OnReceivedMatchState(m));
+            HughServer.GetInstance.Socket.ReceivedMatchmakerMatched += m => mainThread.Enqueue(() => OnRecivedMatchMakerMatched(m));
+            HughServer.GetInstance.Socket.ReceivedMatchPresence += m => mainThread.Enqueue(() => OnReceivedMatchPresence(m));
+            HughServer.GetInstance.Socket.ReceivedMatchState += m => mainThread.Enqueue(async () => await OnReceivedMatchState(m));
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -95,7 +94,7 @@ public class GameManager : MonoBehaviour
     {
         PlayModePanel.SetActive(false);
         
-        SceneController.GetInstace.LoadScene("SinglePlay");
+        SceneController.GetInstance.LoadScene("SinglePlay");
         UIManager.GetInstance.CanvasActive("gamestart", true);
         EnemySpawn.GetInstance.EnemyCoroutineController(true);
     }
@@ -105,13 +104,13 @@ public class GameManager : MonoBehaviour
         PlayModePanel.SetActive(false);
 
         await MatchStart();
-        SceneController.GetInstace.LoadScene("MultiPlay");
-       // UIManager.GetInstance.CanvasActive("gamestart", true);
+        SceneController.GetInstance.LoadScene("MultiPlay");
+        UIManager.GetInstance.CanvasActive("gamestart", true);
     }
 
     private async Task MatchStart(int min = 2)
     {
-        var matchMakingTicket = await HughServer.GetInstace.Socket.AddMatchmakerAsync("*", min, 8);
+        var matchMakingTicket = await HughServer.GetInstance.Socket.AddMatchmakerAsync("*", min, 8);
         ticket = matchMakingTicket.Ticket;
 #if UNITY_EDITOR
         Debug.LogFormat("<color=green><b>[Find Match]</b> Ticket : {0} </color>", ticket);
@@ -158,7 +157,7 @@ public class GameManager : MonoBehaviour
     }
     public async Task QuickMatch()
     {
-        await HughServer.GetInstace.Socket.LeaveMatchAsync(currentMatch);
+        await HughServer.GetInstance.Socket.LeaveMatchAsync(currentMatch);
 
         currentMatch = null;
         localUser = null;
@@ -177,19 +176,19 @@ public class GameManager : MonoBehaviour
 
     public async Task SendMatchStateAsync(long opCode, string state)
     {
-        await HughServer.GetInstace.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
+        await HughServer.GetInstance.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
     }
 
     public void SendMatchState(long opCode, string state)
     {
-        HughServer.GetInstace.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
+        HughServer.GetInstance.Socket.SendMatchStateAsync(currentMatch.Id, opCode, state);
     }
 
     private async void OnRecivedMatchMakerMatched(IMatchmakerMatched matchmakerMatched)
     {
         // localuser 캐싱
         localUser = matchmakerMatched.Self.Presence;
-        var match = await HughServer.GetInstace.Socket.JoinMatchAsync(matchmakerMatched);
+        var match = await HughServer.GetInstance.Socket.JoinMatchAsync(matchmakerMatched);
 
 #if UNITY_EDITOR
         Debug.Log("Our Session Id: " + match.Self.SessionId);

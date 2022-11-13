@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 sealed class SinglePlayManager : MonoBehaviour
-{
+{/*
     #region SingleTon
     private static SinglePlayManager instance;
 
@@ -93,7 +93,7 @@ sealed class SinglePlayManager : MonoBehaviour
             GameManager.GetInstance.isGroundStage = false;
             GameManager.GetInstance.isBossStage = true;
 
-            EnemySpawn.GetInstance.BossSpawnController();
+            EnemySpawn.GetInstance.BossSpawnController(true);
         }
 
         ScoreUpdate();
@@ -197,5 +197,5 @@ sealed class SinglePlayManager : MonoBehaviour
         scoreText.text = "Score " + score.ToString();
         pshellCountText.text = "Boom " + pshellCount.ToString();
     }
-
+    */
 }

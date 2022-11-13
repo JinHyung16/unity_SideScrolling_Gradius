@@ -26,7 +26,7 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
 
     private void Start()
     {
-        HughServer.GetInstace.Socket.ReceivedMatchState += EnqueueOnReceivedMatchState;
+        HughServer.GetInstance.Socket.ReceivedMatchState += EnqueueOnReceivedMatchState;
 
         movementController = GetComponentInChildren<MovementController>();
         weaponController = GetComponentInChildren<WeaponController>();
@@ -54,16 +54,13 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (GameManager.GetInstance != null)
-        {
-            HughServer.GetInstace.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
-        }
-        //GameManager.GetInstance.IsSpawnRemote = false;
+        HughServer.GetInstance.Socket.ReceivedMatchState -= EnqueueOnReceivedMatchState;
+        GameManager.GetInstance.IsSpawnRemote = false;
     }
 
     private void OnEnable()
     {
-        //GameManager.GetInstance.IsSpawnRemote = true;
+        GameManager.GetInstance.IsSpawnRemote = true;
     }
 
     private void EnqueueOnReceivedMatchState(IMatchState matchState)

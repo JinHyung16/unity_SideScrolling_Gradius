@@ -65,6 +65,8 @@ public class EnemySpawn : MonoBehaviour
     IEnumerator ufoIEnum;
     IEnumerator groundIEnum;
 
+    IEnumerator mChaserIEnum; //multi play enemy chaser spawning
+
     private void BindingIEnumerator()
     {
         bossIEnum = BossSpawn();
@@ -72,6 +74,8 @@ public class EnemySpawn : MonoBehaviour
         boomberIEnum = BoomberSpawn();
         ufoIEnum = UfoSpawn();
         groundIEnum = GroundSpawn();
+
+        mChaserIEnum = MultiChaserSpawn();
     }
 
     public void BossSpawnController()
@@ -80,10 +84,7 @@ public class EnemySpawn : MonoBehaviour
         {
             StartCoroutine(bossIEnum);
         }
-        else
-        {
-            StopCoroutine(bossIEnum);
-        }
+        StopCoroutine(bossIEnum);
     }
 
     public void EnemyCoroutineController(bool active)
@@ -93,7 +94,7 @@ public class EnemySpawn : MonoBehaviour
             StartCoroutine(chaserIEnum);
             StartCoroutine(boomberIEnum);
             StartCoroutine(ufoIEnum);
-            if (SceneController.GetInstace.IsSinglePlayScene())
+            if (SceneController.GetInstance.IsSinglePlayScene())
             {
                 StartCoroutine(groundIEnum);
             }
@@ -107,6 +108,10 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
+    public void MultiEnemyStartCoroutine()
+    {
+        StartCoroutine(mChaserIEnum);
+    }
     private IEnumerator BossSpawn()
     {
         GameObject boss = PoolManager.GetInstance.MakeBoss();
@@ -179,6 +184,17 @@ public class EnemySpawn : MonoBehaviour
             }
 
             yield return Cashing.YieldInstruction.WaitForSeconds(gMaxTime);
+        }
+    }
+
+    private IEnumerator MultiChaserSpawn()
+    {
+        while (true)
+        {
+            chaserYAxis = Random.Range(-7, 7);
+            GameObject mec = PoolManager.GetInstance.MakeEnemy("multiChaser");
+            mec.transform.position = new Vector2(chaserSpawnPoint.position.x, chaserYAxis);
+            yield return Cashing.YieldInstruction.WaitForSeconds(4.0f);
         }
     }
 }

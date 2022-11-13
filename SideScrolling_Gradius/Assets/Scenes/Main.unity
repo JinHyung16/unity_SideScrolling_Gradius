@@ -1744,6 +1744,7 @@ MonoBehaviour:
   euBullet: {fileID: 7007768820555418090, guid: 548a033fad4b4fc4c952dc5ea5cbcd4d, type: 3}
   ebBullet: {fileID: 629421570950033577, guid: 63b24584c2b345247af6d494d53a1f12, type: 3}
   ebShell: {fileID: 2861362904058620337, guid: 64cf2bec1421171449aa32df3a741d09, type: 3}
+  multiChaser: {fileID: 9081090597646229928, guid: af14dcaf35758cd4bb13ca0db8f8f57f, type: 3}
 --- !u!4 &847683024
 Transform:
   m_ObjectHideFlags: 0
@@ -1789,6 +1790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossTime: 120
+  dontUpdateTime: 0
   curTime: 0
   isOver: 0
   score: 0

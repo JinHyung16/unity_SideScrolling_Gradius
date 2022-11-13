@@ -51,7 +51,7 @@ public class PlayerNetworkLocalSync : MonoBehaviour
         }
     }
 
-    /*
+    
     private void OnEnable()
     {
         GameManager.GetInstance.IsSpawnLocal = true;
@@ -61,5 +61,5 @@ public class PlayerNetworkLocalSync : MonoBehaviour
     {
         GameManager.GetInstance.IsSpawnLocal = false;
     }
-    */
+    
 }

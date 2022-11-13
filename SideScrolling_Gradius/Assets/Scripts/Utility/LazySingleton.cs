@@ -18,7 +18,7 @@ namespace HughUtility
         }
 
         // T type에 대해 instance한 걸 불러와 쓸겁니다.
-        public static T GetInstace
+        public static T GetInstance
         {
             get
             {
