@@ -22,7 +22,8 @@ public class EBossShell : MonoBehaviour
             GameObject e = Instantiate(effect, transform.position, transform.rotation);
             Destroy(e, 0.3f);
 
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EBullet, this.gameObject);
         }
 
         if (collision.CompareTag("PBullet"))
@@ -30,7 +31,8 @@ public class EBossShell : MonoBehaviour
             GameObject e = Instantiate(effect, transform.position, transform.rotation);
             Destroy(e, 0.3f);
 
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EBullet, this.gameObject);
         }
     }
 
@@ -38,7 +40,8 @@ public class EBossShell : MonoBehaviour
     {
         if (collision.CompareTag("Border"))
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EBullet, this.gameObject);
         }
     }
 

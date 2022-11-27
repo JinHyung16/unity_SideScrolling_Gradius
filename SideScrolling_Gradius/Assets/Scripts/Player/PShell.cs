@@ -33,6 +33,7 @@ public class PShell : MonoBehaviour
 
     private void StateSetActive()
     {
-        this.gameObject.SetActive(false);
+        NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.PShell, this.gameObject);
+        //this.gameObject.SetActive(false);
     }
 }

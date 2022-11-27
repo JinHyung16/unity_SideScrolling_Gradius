@@ -18,6 +18,7 @@ public class EnemyGround : MonoBehaviour
 
     [SerializeField] private bool isMove = false;
 
+
     public int HP { get; set; }
     private void Start()
     {
@@ -58,7 +59,7 @@ public class EnemyGround : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (PoolManager.GetInstance != null)
+        if (NewPoolManager.GetInstance != null)
         {
             hp = 60;
             HP = hp;
@@ -91,7 +92,8 @@ public class EnemyGround : MonoBehaviour
         {
             for(int i = 0; i< 3; i++)
             {
-                GameObject eg = PoolManager.GetInstance.MakeBullet("egbullet");
+                GameObject eg = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.EBullet, "EGroundBullet");
+                //GameObject eg = PoolManager.GetInstance.MakeBullet("egbullet");
                 eg.transform.position = firePoint.position;
                 eg.SetActive(true);
                 eg.GetComponent<Rigidbody2D>().AddForce(Vector2.up * firePower, ForceMode2D.Impulse);
@@ -128,7 +130,8 @@ public class EnemyGround : MonoBehaviour
         Destroy(effect, 0.2f);
 
         EnemySpawn.GetInstance.gCount--;
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
+        NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EGround, this.gameObject);
     }
 
     public void Damaged(int damage)

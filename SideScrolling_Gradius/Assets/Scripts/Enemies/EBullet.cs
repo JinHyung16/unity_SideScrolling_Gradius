@@ -8,7 +8,8 @@ public class EBullet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EBullet, this.gameObject);
         }
     }
 
@@ -16,7 +17,8 @@ public class EBullet : MonoBehaviour
     {
         if (collision.CompareTag("Border"))
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EBullet, this.gameObject);
         }
     }
 }

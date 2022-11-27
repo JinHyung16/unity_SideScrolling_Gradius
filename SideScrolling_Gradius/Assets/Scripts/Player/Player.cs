@@ -32,8 +32,8 @@ public class Player : MonoBehaviour
     private const float radius = 1.0f;
 
     private float startTime = 0.0f;
-    private float curTime = 0.0f;
-    private float specialTime = 0.0f;
+    [SerializeField] private float curTime = 0.0f;
+    [SerializeField] private float specialTime = 0.0f;
     [SerializeField] private float delayTime = 0.0f;
     [SerializeField] private float specialDelay = 4.0f;
 
@@ -168,12 +168,12 @@ public class Player : MonoBehaviour
     }
     private void ReloadTime()
     {
-        curTime += (Time.deltaTime - startTime);
+        curTime += (startTime - Time.deltaTime);
     }
 
     private void SpecialReloadTime()
     {
-        specialTime += (Time.deltaTime - startTime);
+        specialTime += (startTime - Time.deltaTime);
     }
     private void Fire()
     {
@@ -183,19 +183,22 @@ public class Player : MonoBehaviour
             {
                 if (0 < playerPower)
                 {
-                    GameObject b1 = PoolManager.GetInstance.MakeBullet("pbullet");
+                    GameObject b1 = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.PBullet, "PBullet");
+                    //GameObject b1 = PoolManager.GetInstance.MakeBullet("pbullet");
                     b1.transform.position = firePointOne.position;
                     b1.SetActive(true);
                     b1.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
                     if (1 < playerPower)
                     {
-                        GameObject b2 = PoolManager.GetInstance.MakeBullet("pbullet");
+                        GameObject b2 = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.PBullet, "PBullet");
+                        //GameObject b2 = PoolManager.GetInstance.MakeBullet("pbullet");
                         b2.transform.position = firePointTwo.position;
                         b2.SetActive(true);
                         b2.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
                         if (2 < playerPower)
                         {
-                            GameObject b3 = PoolManager.GetInstance.MakeBullet("pbullet");
+                            GameObject b3 = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.PBullet, "PBullet");
+                            //GameObject b3 = PoolManager.GetInstance.MakeBullet("pbullet");
                             b3.transform.position = firePointThree.position;
                             b3.SetActive(true);
                             b3.GetComponent<Rigidbody2D>().AddForce(Vector2.right * firePower, ForceMode2D.Impulse);
@@ -213,7 +216,8 @@ public class Player : MonoBehaviour
         {
             if (shellCount > 0)
             {
-                GameObject s = PoolManager.GetInstance.MakeBullet("pshell");
+                GameObject s = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.PShell, "PShell");
+                //GameObject s = PoolManager.GetInstance.MakeBullet("pshell");
                 s.transform.position = fireShellPoint.position;
                 s.SetActive(true);
                 s.GetComponent<Rigidbody2D>().AddForce(Vector2.down * firePower, ForceMode2D.Impulse);
@@ -245,7 +249,8 @@ public class Player : MonoBehaviour
                     Vector2 bulletMoveDirection = (fireDirVector - startPoint).normalized * firePower;
 
                     // Create game objects.
-                    GameObject bs = PoolManager.GetInstance.MakeBullet("pbulletSp");
+                    GameObject bs = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.PBullet, "PBulletSP");
+                    //GameObject bs = PoolManager.GetInstance.MakeBullet("pbulletSp");
                     bs.transform.position = new Vector2(startPoint.x, startPoint.y);
                     bs.SetActive(true);
                     bs.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletMoveDirection.x, bulletMoveDirection.y);

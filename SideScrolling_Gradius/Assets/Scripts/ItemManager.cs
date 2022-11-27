@@ -12,7 +12,7 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        if (PoolManager.GetInstance != null)
+        if (NewPoolManager.GetInstance != null)
         {
             pItemSpawnTime = Random.Range(10, 20);
             lItemSpawnTime = Random.Range(10, 30);
@@ -33,7 +33,8 @@ public class ItemManager : MonoBehaviour
         {
             pItemSpawnTime = Random.Range(10, 30);
             yAxis = Random.Range(-6, 6);
-            GameObject item = PoolManager.GetInstance.MakeItem("power");
+            GameObject item = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.Item, "PowerItem");
+            //GameObject item = PoolManager.GetInstance.MakeItem("power");
             item.transform.position = new Vector2(transform.position.x, yAxis);
             item.SetActive(true);
             item.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveSpeed, ForceMode2D.Impulse);
@@ -47,7 +48,8 @@ public class ItemManager : MonoBehaviour
         {
             lItemSpawnTime = Random.Range(20, 80);
             yAxis = Random.Range(-6, 6);
-            GameObject item = PoolManager.GetInstance.MakeItem("shell");
+            GameObject item = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.Item, "ShellItem");
+            //GameObject item = PoolManager.GetInstance.MakeItem("shell");
             item.transform.position = new Vector2(transform.position.x, yAxis);
             item.SetActive(true);
             item.GetComponent<Rigidbody2D>().AddForce(Vector2.left * moveSpeed, ForceMode2D.Impulse);

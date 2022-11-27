@@ -14,6 +14,7 @@ public class EnemyChaser : MonoBehaviour, IDamage
     [SerializeField] private int hp = 60;
     [SerializeField] private float moveSpeed = 3.0f;
     [SerializeField] private float rotateSpeed = 3.0f;
+
     public int HP { get; set; }
 
     private void Start()
@@ -63,7 +64,7 @@ public class EnemyChaser : MonoBehaviour, IDamage
 
     private void OnEnable()
     {
-        if (PoolManager.GetInstance != null)
+        if (NewPoolManager.GetInstance != null)
         {
             hp = 40;
             HP = hp;
@@ -109,7 +110,8 @@ public class EnemyChaser : MonoBehaviour, IDamage
     private void StateActiveSet()
     {
         audio.Stop();
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
+        NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EChaser, this.gameObject);
     }
 
     public void Damaged(int damage)

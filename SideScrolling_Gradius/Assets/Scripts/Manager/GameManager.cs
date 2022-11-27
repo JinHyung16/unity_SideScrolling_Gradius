@@ -71,16 +71,6 @@ public class GameManager : MonoBehaviour
 
             //panel setting
             PlayModePanel.SetActive(true);
-
-            //about nakama server
-            playerDictionary = new Dictionary<string, GameObject>();
-            var mainThread = UnityMainThreadDispatcher.Instance();
-
-            await HughServer.GetInstance.ConnecToServer();
-
-            HughServer.GetInstance.Socket.ReceivedMatchmakerMatched += m => mainThread.Enqueue(() => OnRecivedMatchMakerMatched(m));
-            HughServer.GetInstance.Socket.ReceivedMatchPresence += m => mainThread.Enqueue(() => OnReceivedMatchPresence(m));
-            HughServer.GetInstance.Socket.ReceivedMatchState += m => mainThread.Enqueue(async () => await OnReceivedMatchState(m));
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,6 +91,16 @@ public class GameManager : MonoBehaviour
 
     private async void MultiPlayMode()
     {
+        //about nakama server
+        playerDictionary = new Dictionary<string, GameObject>();
+        var mainThread = UnityMainThreadDispatcher.Instance();
+
+        await HughServer.GetInstance.ConnecToServer();
+
+        HughServer.GetInstance.Socket.ReceivedMatchmakerMatched += m => mainThread.Enqueue(() => OnRecivedMatchMakerMatched(m));
+        HughServer.GetInstance.Socket.ReceivedMatchPresence += m => mainThread.Enqueue(() => OnReceivedMatchPresence(m));
+        HughServer.GetInstance.Socket.ReceivedMatchState += m => mainThread.Enqueue(async () => await OnReceivedMatchState(m));
+
         PlayModePanel.SetActive(false);
 
         await MatchStart();

@@ -114,7 +114,8 @@ public class EnemySpawn : MonoBehaviour
     }
     private IEnumerator BossSpawn()
     {
-        GameObject boss = PoolManager.GetInstance.MakeBoss();
+        GameObject boss = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.EBoss, "EnemyBoss");
+        //GameObject boss = PoolManager.GetInstance.MakeBoss();
         boss.transform.position = bossSpawnPoint.position;
         boss.SetActive(true);
 
@@ -128,7 +129,8 @@ public class EnemySpawn : MonoBehaviour
             if (cCount < chaserMax)
             {
                 chaserYAxis = Random.Range(-7, 7);
-                GameObject ec = PoolManager.GetInstance.MakeEnemy("chaser");
+                GameObject ec = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.EChaser, "EnemyChaser");
+                //GameObject ec = PoolManager.GetInstance.MakeEnemy("chaser");
                 ec.transform.position = new Vector2(chaserSpawnPoint.position.x, chaserYAxis);
                 cCount++;
             }
@@ -146,7 +148,8 @@ public class EnemySpawn : MonoBehaviour
                 // 한번에 본인 기준 위 아래 총 3개 생성
                 for (int i = -1; i < 2; i++)
                 {
-                    GameObject eb = PoolManager.GetInstance.MakeEnemy("boomber");
+                    GameObject eb = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.EBoomber, "EnemyBoomber");
+                   // GameObject eb = PoolManager.GetInstance.MakeEnemy("boomber");
                     eb.transform.position = new Vector2(boomberSpawnPoint.position.x, boomberYAxis + i);
                     eb.SetActive(true);
                     bCount++;
@@ -162,7 +165,8 @@ public class EnemySpawn : MonoBehaviour
             if (uCount < ufoMax)
             {
                 ufoYAxis = Random.Range(-4, 4);
-                GameObject eu = PoolManager.GetInstance.MakeEnemy("ufo");
+                GameObject eu = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.EUFO, "EnemyUFO");
+                //GameObject eu = PoolManager.GetInstance.MakeEnemy("ufo");
                 eu.transform.position = new Vector2(ufoSpawnPoint.position.x, ufoYAxis);
                 uCount++;
             }
@@ -178,7 +182,8 @@ public class EnemySpawn : MonoBehaviour
                 && !GameManager.GetInstance.isBossStage)
             {
                 groudXAxis = Random.Range(-8, 5);
-                GameObject eg = PoolManager.GetInstance.MakeEnemy("ground");
+                GameObject eg = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.EGround, "EnemyGround");
+                //GameObject eg = PoolManager.GetInstance.MakeEnemy("ground");
                 eg.transform.position = new Vector2(groudXAxis, groundSpawnPoint.position.y);
                 gCount++;
             }
@@ -187,12 +192,17 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// multiplay 때 생성시킬 enemy
+    /// </summary>
+    /// <returns> Coroutine을 실행시킬 IEnumerator 객체 반환 </returns>
     private IEnumerator MultiChaserSpawn()
     {
         while (true)
         {
             chaserYAxis = Random.Range(-7, 7);
-            GameObject mec = PoolManager.GetInstance.MakeEnemy("multiChaser");
+            GameObject mec = NewPoolManager.GetInstance.GetPrefab(NewPoolManager.PoolableType.MultiChaser, "MultiEnemyChaser");
+            //GameObject mec = PoolManager.GetInstance.MakeEnemy("multiChaser");
             mec.transform.position = new Vector2(chaserSpawnPoint.position.x, chaserYAxis);
             yield return Cashing.YieldInstruction.WaitForSeconds(4.0f);
         }

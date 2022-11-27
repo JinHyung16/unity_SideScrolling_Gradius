@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemyBoomber : MonoBehaviour, IDamage
 {
@@ -75,7 +76,7 @@ public class EnemyBoomber : MonoBehaviour, IDamage
     }
     private void OnEnable()
     {
-        if (PoolManager.GetInstance != null)
+        if (NewPoolManager.GetInstance != null)
         {
             hp = 50;
             HP = hp;
@@ -113,7 +114,8 @@ public class EnemyBoomber : MonoBehaviour, IDamage
     private void StateActiveSet()
     {
         audio.Stop();
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
+        NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.EBoomber, this.gameObject);
     }
 
     public void Damaged(int damage)

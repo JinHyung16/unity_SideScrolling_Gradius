@@ -10,12 +10,14 @@ public class Item : MonoBehaviour
         {
             if(collision.gameObject.name == "Left")
             {
-                this.gameObject.SetActive(false);
+                //this.gameObject.SetActive(false);
+                NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.Item, this.gameObject);
             }
         }
         if(collision.CompareTag("Player"))
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.Item, this.gameObject);
         }
     }
 }

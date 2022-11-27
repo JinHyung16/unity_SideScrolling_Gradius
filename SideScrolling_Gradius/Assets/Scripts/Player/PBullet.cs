@@ -8,18 +8,26 @@ public class PBullet : MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
-            this.gameObject.SetActive(false);
+            ActiveObj();
+            //this.gameObject.SetActive(false);
         }
 
         if (collision.CompareTag("Border"))
         {
-            this.gameObject.SetActive(false);
+            ActiveObj();
+            //this.gameObject.SetActive(false);
         }
 
         if(collision.CompareTag("Ground"))
         {
-            this.gameObject.SetActive(false);
+            ActiveObj();
+            //this.gameObject.SetActive(false);
         }
+    }
+
+    private void ActiveObj()
+    {
+        NewPoolManager.GetInstance.DespawnObject(NewPoolManager.PoolableType.PBullet, this.gameObject);
     }
 
 }

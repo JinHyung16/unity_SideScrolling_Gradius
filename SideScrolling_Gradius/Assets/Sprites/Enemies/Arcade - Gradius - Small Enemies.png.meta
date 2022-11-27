@@ -363,7 +363,7 @@ TextureImporter:
       213: -3596387738396313087
     second: Arcade - Gradius - Small Enemies_0
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -384,6 +384,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -422,6 +423,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -449,6 +451,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -850,6 +864,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Arcade - Gradius - Small Enemies_85: 5537871436575530997
+      Arcade - Gradius - Small Enemies_46: 1008895639967664096
+      Arcade - Gradius - Small Enemies_91: -4703293747520714721
+      Arcade - Gradius - Small Enemies_44: 3815960805893897274
+      Arcade - Gradius - Small Enemies_43: -5988258503522739845
+      Arcade - Gradius - Small Enemies_88: -7791899823153274647
+      Arcade - Gradius - Small Enemies_90: 4487112422775490584
+      Arcade - Gradius - Small Enemies_45: -1658925576478712791
+      Arcade - Gradius - Small Enemies_92: -3718080055850951545
+      Arcade - Gradius - Small Enemies_84: 1361983441271372242
+      Arcade - Gradius - Small Enemies_93: 3056106687715168928
+      Arcade - Gradius - Small Enemies_86: -3884507834980307069
+      Arcade - Gradius - Small Enemies_87: -875669231509628726
+      Arcade - Gradius - Small Enemies_83: -5625007484835627357
+      Arcade - Gradius - Small Enemies_42: -5099190731457516039
+      Arcade - Gradius - Small Enemies_89: 8375385707819062043
+      Arcade - Gradius - Small Enemies_81: -7246117281873036857
+      Arcade - Gradius - Small Enemies_82: -6794289025474855297
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
