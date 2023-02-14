@@ -26,13 +26,13 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
 
     private void Start()
     {
-        HughServer.GetInstance.Socket.ReceivedMatchState += EnqueueOnReceivedMatchState;
-
         movementController = GetComponentInChildren<MovementController>();
         weaponController = GetComponentInChildren<WeaponController>();
 
         rigid2D = GetComponentInChildren<Rigidbody2D>();
         playerTransform = rigid2D.GetComponent<Transform>();
+
+        HughServer.GetInstance.Socket.ReceivedMatchState += EnqueueOnReceivedMatchState;
     }
 
     private void LateUpdate()
@@ -81,7 +81,7 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
         switch (matchState.OpCode)
         {
             case OpCodes.Position:
-                UpdatePositionAndVelocity(matchState.State);
+                SetPositionAndVelocity(matchState.State);
                 break;
             case OpCodes.Input:
                 SetInputFromState(matchState.State);
@@ -100,16 +100,16 @@ public class PlayerNetworkRemoteSync : MonoBehaviour
     }
 
 
-    private void UpdatePositionAndVelocity(byte[] state)
+    private void SetPositionAndVelocity(byte[] state)
     {
         var stateDictionary = GetStateAsDictionary(state);
 
-        rigid2D.velocity = new Vector2(float.Parse(stateDictionary["velocity.x"]),
-            float.Parse(stateDictionary["velocity.y"]));
+        rigid2D.velocity = new Vector2(float.Parse(stateDictionary["velocity_x"]),
+            float.Parse(stateDictionary["velocity_y"]));
 
         var position = new Vector2(
-            float.Parse(stateDictionary["position.x"]),
-            float.Parse(stateDictionary["position.y"]));
+            float.Parse(stateDictionary["position_x"]),
+            float.Parse(stateDictionary["position_y"]));
 
         lerpFromPosition = playerTransform.position;
         lerpToPosition = position;

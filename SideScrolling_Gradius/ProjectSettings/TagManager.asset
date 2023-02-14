@@ -12,6 +12,8 @@ TagManager:
   - BoomItem
   - LaserItem
   - Ground
+  - MatchManager
+  - MultiplayManager
   layers:
   - Default
   - TransparentFX

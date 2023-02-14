@@ -21,7 +21,7 @@ public class BackGround : MonoBehaviour
 
         backGroundSpace.SetActive(true);
 
-        if (SceneController.GetInstance.IsSinglePlayScene())
+        if (GameManager.GetInstance.IsSinglePlayScene)
         {
             backGroundGround.SetActive(true);
         }
@@ -37,7 +37,7 @@ public class BackGround : MonoBehaviour
     }
     private void Update()
     {
-        if (SceneController.GetInstance.IsSinglePlayScene())
+        if (GameManager.GetInstance.IsSinglePlayScene)
         {
             SinglePlayMoveBackGround();
         }

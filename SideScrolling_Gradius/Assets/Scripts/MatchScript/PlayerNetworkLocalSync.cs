@@ -26,7 +26,7 @@ public class PlayerNetworkLocalSync : MonoBehaviour
     {
         if (stateSyncTimer <= 0)
         {
-            GameManager.GetInstance.SendMatchState(OpCodes.Position,
+            MatchManager.GetInstance.SendMatchState(OpCodes.Position,
                 MatchDataJson.Position(rigidbody2D.velocity, playerTransform.position));
 
             stateSyncTimer = stateFrequency;
@@ -39,7 +39,7 @@ public class PlayerNetworkLocalSync : MonoBehaviour
             return;
         }
 
-        GameManager.GetInstance.SendMatchState(OpCodes.Input,
+        MatchManager.GetInstance.SendMatchState(OpCodes.Input,
             MatchDataJson.Input(playerInputController.hInput, playerInputController.vInput, playerInputController.fireInput));
     }
 
@@ -47,7 +47,7 @@ public class PlayerNetworkLocalSync : MonoBehaviour
     {
         if (collision.CompareTag("EBullet"))
         {
-            GameManager.GetInstance.LocalPlayerDied(this.gameObject);
+            MatchManager.GetInstance.LocalPlayerDied(this.gameObject);
         }
     }
 

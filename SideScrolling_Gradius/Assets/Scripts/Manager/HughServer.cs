@@ -2,24 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Nakama;
-using HughUtility;
 using System.Threading.Tasks;
-
+using System;
+using HughUtility;
 public class HughServer : LazySingleton<HughServer>
 {
-    protected string Scheme = "http";
-    protected string Host = "localhost";
-    protected int Port = 7350;
-    protected string ServerKey = "defaultkey";
+    private string Scheme = "http";
+    private string Host = "localhost";
+    private int Port = 7350;
+    private string ServerKey = "defaultkey";
 
-    protected string SessionPrefName = "nakama.session";
+    private const string SessionPrefName = "nakama.session";
     private const string DeviceIdentifierPrefName = "nakama.deviceUniqueIdentifier";
 
     public IClient Client;
     public ISession Session;
     public ISocket Socket;
-
-    //protected UnityMainThreadDispatcher mainThread;
 
     public async Task ConnecToServer()
     {
@@ -50,19 +48,13 @@ public class HughServer : LazySingleton<HughServer>
                 {
                     deviceId = System.Guid.NewGuid().ToString();
                 }
-
-#if UNITY_EDITOR
-                Debug.LogFormat("<color=orange><b>[HughServer]</b> deviceId : {0} </color>", deviceId);
-#endif
-
                 PlayerPrefs.SetString(DeviceIdentifierPrefName, deviceId);
             }
             Session = await Client.AuthenticateDeviceAsync(deviceId);
-
             PlayerPrefs.SetString(SessionPrefName, Session.AuthToken);
         }
 
-        Socket = Client.NewSocket(false);
+        Socket = Client.NewSocket();
         await Socket.ConnectAsync(Session, true);
 #if UNITY_EDITOR
         Debug.Log("<color=orange><b>[HughServer]</b> Socekt Connect : {0} </color>");

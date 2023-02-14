@@ -25,7 +25,7 @@ public class EnemyChaser : MonoBehaviour, IDamage
 
     private void Update()
     {
-        if (SceneController.GetInstance.IsSinglePlayScene())
+        if (GameManager.GetInstance.IsSinglePlayScene)
         {
             playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         }
@@ -98,7 +98,7 @@ public class EnemyChaser : MonoBehaviour, IDamage
 
     private void Dead()
     {
-        UIManager.GetInstance.score += 10;
+        SinglePlayManager.GetInstance.score += 10;
 
         GameObject effect = Instantiate(explosionEff, transform.position, transform.rotation);
         Destroy(effect, 0.2f);

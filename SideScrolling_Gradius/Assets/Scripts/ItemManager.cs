@@ -19,7 +19,7 @@ public class ItemManager : MonoBehaviour
 
             yAxis = Random.Range(-6, 6);
 
-            if (SceneController.GetInstance.IsSinglePlayScene())
+            if (GameManager.GetInstance.IsSinglePlayScene)
             {
                 StartCoroutine(PowerItem());
                 StartCoroutine(ShellItem());

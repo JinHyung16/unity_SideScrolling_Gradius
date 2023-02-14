@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-sealed class SinglePlayManager : MonoBehaviour
-{/*
-    #region SingleTon
+public class SinglePlayManager : MonoBehaviour
+{
+    #region Singleton
     private static SinglePlayManager instance;
-
     public static SinglePlayManager GetInstance
     {
         get
         {
             if (instance == null)
             {
-                return null;
+                return instance;
             }
             return instance;
         }
@@ -25,35 +24,29 @@ sealed class SinglePlayManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-
     }
     #endregion
-
     private AudioSource audio;
 
     [Tooltip("Can Change the value used by range")]
     [Range(0, 120)][SerializeField] private float bossTime = 120.0f;
-
+    [HideInInspector] public float dontUpdateTime = 0.0f;
     public float curTime = 0.0f;
     private float startTime = 0.0f;
 
-    public bool isOver = false;
+    [HideInInspector] public bool isOver = false;
 
-    public int score = 0;
+    [HideInInspector] public int score = 0;
+    [HideInInspector] public int pshellCount = 0;
     public int hp = 3;
-    public int pshellCount = 0;
 
-    public GameObject initPanel;
-    public GameObject resultPanel;
+    public GameObject GameStartCanvas;
+    public GameObject ResultCanvas;
 
     public Text scoreText;
     public Text resultText;
+
     public Text resultScoreText;
     public Text pshellCountText;
 
@@ -70,30 +63,28 @@ sealed class SinglePlayManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
 
         bossTime = Random.Range(60, 121);
+        dontUpdateTime = bossTime + 1;
         startTime = Time.time;
 
-        initPanel.SetActive(true);
-        resultPanel.SetActive(false);
-
         scoreText.text = "SCORE " + score.ToString();
+
         startBt.onClick.AddListener(GameStart);
         exitBt.onClick.AddListener(ExitGame);
 
-        PlaySound("Start");
+        CanvasActive("all", false);
 
-        // pause the singlePlayScene
-        Time.timeScale = 0;
+        PlaySound("Start");
     }
 
     private void Update()
     {
         curTime += (Time.deltaTime - startTime);
-        if (curTime > bossTime)
+        if (bossTime < curTime && curTime <= dontUpdateTime)
         {
             GameManager.GetInstance.isGroundStage = false;
             GameManager.GetInstance.isBossStage = true;
 
-            EnemySpawn.GetInstance.BossSpawnController(true);
+            EnemySpawn.GetInstance.BossSpawnController();
         }
 
         ScoreUpdate();
@@ -108,18 +99,33 @@ sealed class SinglePlayManager : MonoBehaviour
         }
     }
 
+    public void CanvasActive(string name, bool active)
+    {
+        switch (name)
+        {
+            case "gamestart":
+                GameStartCanvas.SetActive(active);
+                break;
+            case "result":
+                ResultCanvas.SetActive(active);
+                break;
+            default:
+                GameStartCanvas.SetActive(active);
+                ResultCanvas.SetActive(active);
+                break;
+        }
+    }
     private void GameStart()
     {
-        initPanel.SetActive(false);
-
+        CanvasActive("gamestart", false);
         audio.Stop();
-        Time.timeScale = 1;
     }
 
     private void ExitGame()
     {
-        initPanel.SetActive(false);
-        resultPanel.SetActive(false);
+        SceneController.GetInstance.LoadScene("Main");
+
+        CanvasActive("all", false);
 
         score = 0;
         GameManager.GetInstance.isGroundStage = false;
@@ -127,26 +133,19 @@ sealed class SinglePlayManager : MonoBehaviour
         isOver = false;
         hp = 3;
 
-        for(int i = 0; i<hpImgs.Length; i++)
+        for (int i = 0; i < hpImgs.Length; i++)
         {
             hpImgs[i].color = new Color(1, 1, 1, 1);
         }
-
-        Time.timeScale = 0;
-
-        SceneController.GetInstace.LoadScene("Main");
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         isOver = true;
         GameManager.GetInstance.isBossStage = false;
-
-        resultPanel.SetActive(true);
         resultScoreText.text = "Score " + score.ToString();
-
         PlaySound("Over");
-        Time.timeScale = 0;
+        CanvasActive("result", true);
     }
 
     public void GameClear()
@@ -155,11 +154,10 @@ sealed class SinglePlayManager : MonoBehaviour
         GameManager.GetInstance.isBossStage = false;
         GameManager.GetInstance.isGroundStage = false;
 
-        resultPanel.SetActive(true);
+        CanvasActive("result", true);
+
         resultScoreText.text = "Score " + score.ToString();
         PlaySound("Over");
-
-        Time.timeScale = 0;
     }
 
     private void PlaySound(string name)
@@ -190,12 +188,10 @@ sealed class SinglePlayManager : MonoBehaviour
             GameOver();
         }
     }
-    
 
     public void ScoreUpdate()
     {
         scoreText.text = "Score " + score.ToString();
         pshellCountText.text = "Boom " + pshellCount.ToString();
     }
-    */
 }

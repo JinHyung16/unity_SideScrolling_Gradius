@@ -94,7 +94,7 @@ public class EnemySpawn : MonoBehaviour
             StartCoroutine(chaserIEnum);
             StartCoroutine(boomberIEnum);
             StartCoroutine(ufoIEnum);
-            if (SceneController.GetInstance.IsSinglePlayScene())
+            if (GameManager.GetInstance.IsSinglePlayScene)
             {
                 StartCoroutine(groundIEnum);
             }

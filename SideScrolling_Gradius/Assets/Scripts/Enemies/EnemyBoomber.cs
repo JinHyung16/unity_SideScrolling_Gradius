@@ -103,7 +103,7 @@ public class EnemyBoomber : MonoBehaviour, IDamage
 
     private void Dead()
     {
-        UIManager.GetInstance.score += 5;
+        SinglePlayManager.GetInstance.score += 5;
 
         GameObject effect = Instantiate(boomEffect, transform.position, transform.rotation);
         Destroy(effect, 0.2f);

@@ -124,7 +124,7 @@ public class EnemyGround : MonoBehaviour
 
     private void Dead()
     {
-        UIManager.GetInstance.score += 10;
+        SinglePlayManager.GetInstance.score += 10;
 
         GameObject effect = Instantiate(explosionEff, transform.position, transform.rotation);
         Destroy(effect, 0.2f);
