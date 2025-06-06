@@ -1,8 +1,24 @@
-# SideScrolling_Gradius
-😀Hello, I'm Hugh (korea name is JinHyung Kim)  
-📅I developed in Game Engine Programming class. (2022/05/09 ~ 2022/05/16)  
-🎮This is a side scrolling game made by Unity with reference to the 'Gradius' game  
-I made a game by myself  
+# Gradius 🔫
+
+FSM 기반 공격 패턴, 풀링 시스템, Profiler를 통한 성능 분석 및 구조 개선을 중점으로 진행한 개인 프로젝트입니다.
+
+## 📌 프로젝트 개요
+
+- 장르: 2D 횡스크롤 슈팅 (모작 + 창작)
+- 기간: 2022.1 + 리팩토링 (2022.11~2023.02)
+- 역할: 전체 개발
+
+## 🔧 주요 기능
+
+- FSM 패턴 기반 적 공격 구조
+- Object Pooling + Poolable 인터페이스 구조
+- Draw Call 최적화를 위한 UI 구조
+- Profiler 분석 → 리팩토링 적용
+
+## 💡 기술 포인트
+
+- Queue 기반 풀링 개선
+- Pool 초과 시 생성 제한 + 재사용 로직
 
 ## SideScrolling_Gradius : Multi Play
 The new version that has Single Play and Multi Play  
